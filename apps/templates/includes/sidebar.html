@@ -23,7 +23,7 @@
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
-										<a href="#profile">
+										<a href="/profile.html">
 											<span class="link-collapse">My Profile</span>
 										</a>
 									</li>
@@ -36,29 +36,177 @@
 							</div>
 						</div>
 					</div>
+
 					<ul class="nav nav-primary">
-						<li class="nav-item {% if 'index' in segment %} active {% endif %}">
-							<a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-								<i class="fas fa-home"></i>
-								<p>Dashboard</p>
+						<li class="nav-section">
+							<span class="sidebar-mini-icon">
+								<i class="fa fa-ellipsis-h"></i>
+							</span>
+							<h4 class="text-section">核心功能</h4>
+						</li>
+
+						<!-- stock information -->
+						<li class="nav-item {% if 'stock-information' in segment %} active {% endif %}">
+							<a data-toggle="collapse" href="#stock-information">
+								<i class="fas fa-table"></i>
+								<p>股市資訊</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="dashboard">
+							<div class="collapse" id="stock-information">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="/index.html">
-											<span class="sub-item">Dashboard</span>
+										<a href="/stock-information-overview.html">
+											<span class="sub-item">股價總覽</span>
+										</a>
+									</li>
+									<li>
+										<a href="/stock-information-rankings.html">
+											<span class="sub-item">個股排名</span>
+										</a>
+									</li>
+									<li>
+										<a href="/stock-information-heatmaps.html">
+											<span class="sub-item">產業熱力圖</span>
+										</a>
+									</li>
+									<li>
+										<a href="/stock-information-news.html">
+											<span class="sub-item">新聞時事</span>
+										</a>
+									</li>
+									<!-- <li>
+										<a href="#">
+											<span class="sub-item">財經百科</span>
+										</a>
+									</li> -->
+								</ul>
+							</div>
+						</li>
+
+
+						<!-- strategy gallery -->
+						<li class="nav-item {% if 'strategy-gallery' in segment %} active {% endif %}">
+							<a data-toggle="collapse" href="#strategy-gallery">
+								<i class="fas fa-table"></i>
+								<p>策略圖鑑</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="strategy-gallery">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="/strategy-gallery-pool.html">
+											<span class="sub-item">策略卡池</span>
+										</a>
+									</li>
+									<li>
+										<a href="/strategy-gallery-collections.html">
+											<span class="sub-item">你的策略</span>
 										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
+
+
+
+						<!-- paper trading -->
+						<li class="nav-item {% if 'paper-trading' in segment %} active {% endif %}">
+							<a data-toggle="collapse" href="#paper-trading">
+								<i class="fas fa-table"></i>
+								<p>模擬交易</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="paper-trading">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="/paper-trading-manual-back.html">
+											<span class="sub-item">手動回測</span>
+										</a>
+									</li>
+									<li>
+										<a href="/paper-trading-automatic-back.html">
+											<span class="sub-item">自動回測</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+
+
+						<!-- investment notes -->
+						<li class="nav-item {% if 'investment-notes' in segment %} active {% endif %}">
+							<a data-toggle="collapse" href="#investment-notes">
+								<i class="fas fa-table"></i>
+								<p>投資筆記</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="investment-notes">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="/investment-notes-main.html">
+											<span class="sub-item">投資筆記</span>
+										</a>
+									</li>
+									<!-- <li>
+										<a href="/tables-data.html">
+											<span class="sub-item">重點交易</span>
+										</a>
+									</li> -->
+								</ul>
+							</div>
+						</li>
+
+
+						<!-- trading review -->
+						<li class="nav-item {% if 'review' in segment %} active {% endif %}">
+							<a data-toggle="collapse" href="#tables">
+								<i class="fas fa-table"></i>
+								<p>檢討報告</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="/review-roi.html">
+											<span class="sub-item">報酬率分析</span>
+										</a>
+									</li>
+									<li>
+										<a href="/review-mind-map.html">
+											<span class="sub-item">策略心智圖</span>
+										</a>
+									</li>
+									<li>
+										<a href="/review-line-chart.html">
+											<span class="sub-item">交易折線圖</span>
+										</a>
+									</li>
+									<li>
+										<a href="/review-timeline.html">
+											<span class="sub-item">盈虧時間軸</span>
+										</a>
+									</li>
+									<li>
+										<a href="/review-report.html">
+											<span class="sub-item">檢討報告</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+
+
+
+
+
+
 						<li class="nav-section">
 							<span class="sidebar-mini-icon">
 								<i class="fa fa-ellipsis-h"></i>
 							</span>
-							<h4 class="text-section">Components</h4>
+							<h4 class="text-section">附屬功能</h4>
 						</li>
+
 						<li class="nav-item {% if 'ui-' in segment %} active {% endif %}">
 							<a data-toggle="collapse" href="#base">
 								<i class="fas fa-layer-group"></i>
