@@ -1,8 +1,13 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
 from django.contrib import admin
 
 # Register your models here.
+
+from .models import Series, Transaction, StrategyDeck, StrategyCard
+
+# admin.site.register(User)
+
+admin.site.register(Series)
+admin.site.register(Transaction)
+
+admin.site.register(StrategyDeck)
+admin.site.register(StrategyCard)
