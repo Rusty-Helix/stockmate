@@ -1,7 +1,7 @@
 
 {% extends "layouts/base.html" %}
 
-{% block title %} Login {% endblock title %}
+{% block title %} 登入 {% endblock title %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -10,7 +10,7 @@
 
     <div class="page-inner">
         <div class="page-header">
-            <h4 class="page-title">Register</h4>
+            <h4 class="page-title">註冊</h4>
             <ul class="breadcrumbs">
                 <li class="nav-home">
                     <a href="#">
@@ -21,13 +21,13 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Authentication</a>
+                    <a href="#">身分驗證</a>
                 </li>
                 <li class="separator">
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Register</a>
+                    <a href="#">註冊</a>
                 </li>
             </ul>
         </div>
@@ -41,7 +41,7 @@
                                 <span class="text-danger">{{ msg | safe }}</span>
                             {% else %}
                             <span>
-                                Complete your credentials 
+                                輸入暱稱、電子信箱及密碼
                             </span>
                             {% endif %}
 
@@ -51,7 +51,7 @@
                     {% if success %}
 
                         <div class="card-action">
-                            <a href="{% url 'login' %}" class="btn btn-success">Sign IN</a>
+                            <a href="{% url 'login' %}" class="btn btn-success">登入</a>
                         </div>
 
                     {% else %}
@@ -63,7 +63,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6 col-lg-4">
-
+                                        {% csrf_token %}
                                         <div class="form-group">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -71,11 +71,11 @@
                                                         <i class="icon-user"></i>
                                                     </span>
                                                 </div>
-                                                {{ form.username }}
+                                                <input type="text" name="username" placeholder="暱稱" class="form-control" autofocus="" required="" id="id_username">
                                             </div>
                                         </div>
                                         <span class="text-danger">{{ form.username.errors }}</span>
-
+                                        {% csrf_token %}
                                         <div class="form-group">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -83,11 +83,12 @@
                                                         <i class="icon-envelope"></i>
                                                     </span>
                                                 </div>
-                                                {{ form.email }}
+                                                <input type="email" name="email" placeholder="電子信箱" class="form-control" required="" id="id_email">
                                             </div>
                                         </div>
                                         <span class="text-danger">{{ form.email.errors }}</span>
 
+                                        {% csrf_token %}
                                         <div class="form-group">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -95,11 +96,12 @@
                                                         <i class="icon-lock"></i>
                                                     </span>
                                                 </div>
-                                                {{ form.password1 }}
+                                                <input type="password" name="password1" placeholder="密碼" class="form-control" required="" id="id_password1" aria-autocomplete="list">
                                             </div>
                                         </div>
                                         <span class="text-danger">{{ form.password1.errors }}</span>
 
+                                        {% csrf_token %}
                                         <div class="form-group">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -107,7 +109,7 @@
                                                         <i class="icon-lock"></i>
                                                     </span>
                                                 </div>
-                                                {{ form.password2 }}
+                                                <input type="password" name="password2" placeholder="密碼確認" class="form-control" required="" id="id_password2">
                                             </div>
                                         </div>
                                         <span class="text-danger">{{ form.password2.errors }}</span>
@@ -116,9 +118,9 @@
                                 </div>
                             </div>
                             <div class="card-action">
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="submit" class="btn btn-success">註冊並登入</button>
                                 &nbsp; &nbsp;
-                                <span>Already have and account?</span> <a href="{% url 'login' %}" >Login</a>
+                                <span>已有帳戶? </span> <a href="{% url 'login' %}" >登入</a>
                             </div>
 
                         </form>

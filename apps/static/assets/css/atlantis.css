@@ -1,4 +1,4 @@
-/*!
+/* !
 
  =========================================================
  * Atlantis Bootstrap Dashboard (Bootstrap 4)
@@ -2119,7 +2119,8 @@ body {
   box-shadow: 2px 6px 15px 0px rgba(69, 65, 78, 0.1);
   border: 0px; }
   .card .card-header, .card-light .card-header {
-    padding: 1rem 1.25rem;
+    padding: 0.15rem 0.15rem;
+    /* padding: 0; */
     background-color: transparent;
     border-bottom: 1px solid #ebecec !important; }
     .card .card-header:first-child, .card-light .card-header:first-child {
@@ -2145,7 +2146,7 @@ body {
   .card .b-b1, .card-light .b-b1 {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
   .card .card-body, .card-light .card-body {
-    padding: 1.25rem; }
+    padding: 0.75rem; }
   .card .card-footer, .card-light .card-footer {
     background-color: transparent;
     line-height: 30px;
@@ -2839,8 +2840,8 @@ label {
 
 /*     Card Profile     */
 .card-profile {
-  color: #575962; }
-  .card-profile .profile-picture {
+  color: #fff; 
+  }.card-profile .profile-picture {
     text-align: center;
     position: absolute;
     margin: 0 auto;
@@ -2850,14 +2851,15 @@ label {
     width: 100%;
     box-sizing: border-box; }
   .card-profile .user-profile .name {
+    color: #fff !important;
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 5px; }
   .card-profile .user-profile .job {
-    color: #83848a;
+    color: #fff;
     margin-bottom: 5px; }
   .card-profile .user-profile .desc {
-    color: #bbb;
+    color: #fff;
     margin-bottom: 15px; }
   .card-profile .user-profile .social-media {
     margin-bottom: 20px; }
@@ -2875,13 +2877,13 @@ label {
       font-weight: 400;
       font-size: 15px; }
     .card-profile .user-stats .title {
-      color: #7d7b7b; }
+      color: #fff; }
   .card-profile .card-header {
     border-bottom: 0px;
-    height: 100px;
+    height: 150px;
     position: relative; }
   .card-profile .card-body {
-    padding-top: 60px; }
+    padding-top: 0.75rem; }
   .card-profile .card-footer {
     border-top: 0px; }
   .card-profile.card-secondary .card-header {
@@ -5132,16 +5134,54 @@ label.error {
   font-size: 1rem; }
 
 .selectgroup-input:checked + .selectgroup-button {
-  border-color: #1572E8;
+  border-color: #65C2EE;
   z-index: 1;
-  color: #1572E8;
+  color: #65C2EE;
   background: rgba(21, 114, 232, 0.15); }
 
 .selectgroup-input:focus + .selectgroup-button {
-  border-color: #1572E8;
+  border-color: #65C2EE;
   z-index: 2;
-  color: #1572E8;
+  color: #65C2EE;
   box-shadow: 0 0 0 2px rgba(21, 114, 232, 0.25); }
+
+
+.selectgroup-input:checked + .selectgroup-button.buy {
+  border-color: #ff5566;
+  z-index: 1;
+  color: #ff5566;
+  background: rgba(255, 150, 160, 0.15); }
+
+.selectgroup-input:focus + .selectgroup-button.buy {
+  border-color: #ff5566;
+  z-index: 2;
+  color: #ff5566;
+  box-shadow: 0 0 0 2px rgba(255, 150, 160, 0.25); }
+
+.selectgroup-input:checked + .selectgroup-button.sell {
+  border-color: #55ff66;
+  z-index: 1;
+  color: #55ff66;
+  background: rgba(150, 255, 160, 0.15); }
+
+.selectgroup-input:focus + .selectgroup-button.sell {
+  border-color: #55ff66;
+  z-index: 2;
+  color: #55ff66;
+  box-shadow: 0 0 0 2px rgba(150, 255, 160, 0.25); }
+
+.selectgroup-input:checked + .selectgroup-button.wait {
+  border-color: #cccccc;
+  z-index: 1;
+  color: #cccccc;
+  background: rgba(200, 200, 200, 0.15); }
+
+.selectgroup-input:focus + .selectgroup-button.wait {
+  border-color: #cccccc;
+  z-index: 2;
+  color: #cccccc;
+  box-shadow: 0 0 0 2px rgba(200, 200, 200, 0.25); }
+
 
 .selectgroup-pills {
   flex-wrap: wrap;
@@ -5246,7 +5286,7 @@ label.error {
 
 .colorinput-input:focus ~ .colorinput-color {
   border-color: #467fcf;
-  box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.25); }
+  box-shadow: 0 0 4 10px rgba(70, 127, 207, 0.25); }
 
 .imagecheck {
   margin: 0;
@@ -5266,7 +5306,7 @@ label.error {
 
 .imagecheck-input:focus ~ .imagecheck-figure {
   border-color: #1572E8;
-  box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.25); }
+  box-shadow: 0 0 4 10px rgba(70, 127, 207, 0.25); }
 
 .imagecheck-input:checked ~ .imagecheck-figure {
   border-color: rgba(0, 40, 100, 0.24); }
@@ -5274,18 +5314,19 @@ label.error {
 .imagecheck-figure:before {
   content: '';
   position: absolute;
-  top: .25rem;
-  left: .25rem;
+  top: .20rem;
+  left: .20rem;
   display: block;
-  width: 1rem;
-  height: 1rem;
+  width: 2rem;
+  height: 2rem;
   pointer-events: none;
   -webkit-user-select: none;
   user-select: none;
   background: #1572E8 url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E") no-repeat center center/50% 50%;
+  /* background: #1572E8 url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E") no-repeat center center/50% 50%; */
   color: #fff;
   z-index: 1;
-  border-radius: 3px;
+  border-radius: 5px;
   opacity: 0;
   transition: .3s opacity; }
 

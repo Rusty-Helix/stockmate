@@ -39,7 +39,17 @@
 										<i class="fa fa-search search-icon"></i>
 									</button>
 								</div>
-								<input type="text" placeholder="Search ..." class="form-control">
+								{% if True %}	
+								<input type="text" placeholder="搜尋股價 ..." class="form-control">
+								{% elif True %}
+								<input type="text" placeholder="搜尋策略 ..." class="form-control">
+								{% elif True %}
+								<input type="text" placeholder="搜尋交易 ..." class="form-control">
+								{% elif True %}
+								<input type="text" placeholder="搜尋筆記 ..." class="form-control">
+								{% else %}
+								<input type="text" placeholder="搜尋檢討報告 ..." class="form-control">
+								{% endif %}
 							</div>
 						</form>
 					</div>
@@ -233,14 +243,14 @@
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 								<div class="avatar-sm">
-									<img src="/static/assets/img/avatar.svg" alt="..." class="avatar-img rounded-circle">
+									<img src="/static/assets/img/druid.png" alt="..." class="avatar-img rounded-circle">
 								</div>
 							</a>
 							<ul class="dropdown-menu dropdown-user animated fadeIn">
 								<div class="dropdown-user-scroll scrollbar-outer">
 									<li>
 										<div class="user-box">
-											<div class="avatar-lg"><img src="/static/assets/img/avatar.svg" alt="image profile" class="avatar-img rounded"></div>
+											<div class="avatar-lg"><img src="/static/assets/img/druid.png" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
 												<h4>
 													{{ request.user.username }}
@@ -248,19 +258,20 @@
 												<p class="text-muted">
 													{{ request.user.email }}
 												</p>
-												<a href="/profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+												<a href="/profile.html" class="btn btn-xs btn-secondary btn-sm">個人資訊</a>
 											</div>
 										</div>
 									</li>
 									<li>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="/profile.html">My Profile</a>
-										<a class="dropdown-item" href="#">My Balance</a>
+										<!-- <a class="dropdown-item" href="/profile.html">個人資訊</a> -->
+										<!-- 快捷傳送門 -->
+										<a class="dropdown-item" href="#">虛擬資產</a>
 										<!-- <a class="dropdown-item" href="#">Inbox</a> -->
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">Account Setting</a>
+										<a class="dropdown-item" href="#">帳戶設定</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+										<a class="dropdown-item" href="{% url 'logout' %}">登出</a>
 									</li>
 								</div>
 							</ul>

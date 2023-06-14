@@ -14,8 +14,5 @@ COPY . .
 # running migrations
 RUN python manage.py migrate
 
-EXPOSE 5000/tcp
-EXPOSE 5000/udp
-
 # gunicorn
 CMD ["gunicorn", "--config", "gunicorn-cfg.py", "core.wsgi"]

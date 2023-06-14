@@ -6,7 +6,7 @@
 				{% if request.user.is_authenticated %}	
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="/static/assets/img/avatar.svg" alt="..." class="avatar-img rounded-circle">
+							<img src="/static/assets/img/druid.png" alt="..." class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -24,12 +24,12 @@
 								<ul class="nav">
 									<li>
 										<a href="/profile.html">
-											<span class="link-collapse">My Profile</span>
+											<span class="link-collapse">個人資訊</span>
 										</a>
 									</li>
 									<li>
 										<a href="{% url 'logout' %}">
-											<span class="link-collapse">Logout</span>
+											<span class="link-collapse">登出</span>
 										</a>
 									</li>
 								</ul>
@@ -100,7 +100,7 @@
 									</li>
 									<li>
 										<a href="/strategy-gallery-decks.html">
-											<span class="sub-item">你的策略</span>
+											<span class="sub-item">策略卡組</span>
 										</a>
 									</li>
 								</ul>
@@ -143,8 +143,13 @@
 							<div class="collapse" id="investment-notes">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="/investment-notes-main.html">
-											<span class="sub-item">投資筆記</span>
+										<a href="/investment-notes-all.html">
+											<span class="sub-item">所有筆記</span>
+										</a>
+									</li>
+									<li>
+										<a href="/investment-notes-highlights.html">
+											<span class="sub-item">重點筆記</span>
 										</a>
 									</li>
 									<!-- <li>
@@ -159,31 +164,31 @@
 
 						<!-- trading review -->
 						<li class="nav-item {% if 'review' in segment %} active {% endif %}">
-							<a data-toggle="collapse" href="#tables">
+							<a data-toggle="collapse" href="#review">
 								<i class="fas fa-table"></i>
-								<p>檢討報告</p>
+								<p>績效檢討</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="tables">
+							<div class="collapse" id="review">
 								<ul class="nav nav-collapse">
+									<li>
+										<a href="/review-execution.html">
+											<span class="sub-item">執行力分析</span>
+										</a>
+									</li>
 									<li>
 										<a href="/review-roi.html">
 											<span class="sub-item">報酬率分析</span>
 										</a>
 									</li>
 									<li>
-										<a href="/review-mind-map.html">
-											<span class="sub-item">策略心智圖</span>
+										<a href="/review-timeline.html">
+											<span class="sub-item">盈虧時間軸</span>
 										</a>
 									</li>
 									<li>
 										<a href="/review-line-chart.html">
 											<span class="sub-item">交易折線圖</span>
-										</a>
-									</li>
-									<li>
-										<a href="/review-timeline.html">
-											<span class="sub-item">盈虧時間軸</span>
 										</a>
 									</li>
 									<li>
@@ -447,7 +452,7 @@
 					<ul class="nav nav-primary">
 						<li class="mx-4 mt-2">
                             <a target="_blank"
-                               href="https://appseed.us/support/" 
+                               href="#" 
                                class="btn btn-danger btn-block">
                                 <span class="btn-label mr-2"> <i class="fa fa-video"></i> </span>專題影片</a> 
 						</li>

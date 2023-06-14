@@ -41,7 +41,7 @@
                                 <span class="text-danger">{{ msg | safe }}</span>
                             {% else %}
                             <span>
-                                Add your credentials
+                                登入股伴
                             </span>
                             {% endif %}
 
@@ -55,7 +55,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 col-lg-4">
-
+                                    {% csrf_token %}
                                     <div class="form-group">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -63,10 +63,10 @@
                                                     <i class="icon-user"></i>
                                                 </span>
                                             </div>
-                                            {{ form.username }}
+                                            <input type="text" name="username" placeholder="暱稱" class="form-control" required="" id="id_username">
                                         </div>
                                     </div>
-
+                                    {% csrf_token %}
                                     <div class="form-group">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -74,7 +74,7 @@
                                                     <i class="icon-lock"></i>
                                                 </span>
                                             </div>
-                                            {{ form.password }}
+                                            <input type="password" name="password" placeholder="密碼" class="form-control" required="" id="id_password">
                                         </div>
                                     </div>
 
@@ -82,9 +82,9 @@
                             </div>
                         </div>
                         <div class="card-action">
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success">登入</button>
                             &nbsp; &nbsp;
-                            <span>Not a member?</span> Please <a href="{% url 'register' %}" >Register</a>
+                            <span>尚未註冊? </span><a href="{% url 'register' %}" > 註冊</a>
                         </div>
 
                     </form>
