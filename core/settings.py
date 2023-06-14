@@ -7,7 +7,7 @@ import os, environ
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, True)
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -27,12 +27,12 @@ DEBUG = env('DEBUG')
 ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets') 
 
 # load production server from .env
-ALLOWED_HOSTS        = ['*']
-# ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1',               env('SERVER', default='127.0.0.1'),
-#                         '0.0.0.0', '*' ]
-CSRF_TRUSTED_ORIGINS = ['stockmate.up.railway.app' ]
-# CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'https://' + env('SERVER', default='127.0.0.1'),
-#                         'stockmate.up.railway.app' ]
+# ALLOWED_HOSTS        = ['*']
+ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1',               env('SERVER', default='127.0.0.1'),
+                        '0.0.0.0', '*' ]
+# CSRF_TRUSTED_ORIGINS = ['stockmate.up.railway.app' ]
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'https://' + env('SERVER', default='127.0.0.1'),
+                        'stockmate.up.railway.app' ]
 
 # Application definition
 
