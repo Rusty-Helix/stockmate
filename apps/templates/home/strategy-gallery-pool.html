@@ -39,36 +39,47 @@
 					<div class="card" style="flex-direction: column">
 						<div class="card-header" style="flex-direction: row">
 									<div class="form-group">
-										<label class="form-label">策略篩選器</label><br>
+										<!-- <label class="form-label">策略篩選器</label><br> -->
+
+										<button
+											type="submit" class="btn btn-primary"
+											style="border-radius: 6px !important; margin-right: 8px !important;">
+											<span class="btn-label">
+												<i class="fa fa-filter" style="border-radius: 6px !important; width: 18px !important;"></i>
+											</span>
+											篩選
+										</button>
+										
 										<div class="selectgroup selectgroup-pills">
 											<label class="selectgroup-item">
-												<input type="checkbox" name="value" value="HTML" class="selectgroup-input" checked="">
+												<input type="checkbox" name="filter-candlestick-pattern" value="filter-candlestick-pattern" class="selectgroup-input" checked>
 												<span class="selectgroup-button">K線型態</span>
 											</label>
 											<label class="selectgroup-item">
-												<input type="checkbox" name="value" value="CSS" class="selectgroup-input" checked>
+												<input type="checkbox" name="filter-index-trend" value="filter-index-trend" class="selectgroup-input" checked>
 												<span class="selectgroup-button">指標趨勢</span>
 											</label>
 											<label class="selectgroup-item">
-												<input type="checkbox" name="value" value="PHP" class="selectgroup-input" checked>
+												<input type="checkbox" name="filter-index-value" value="filter-trend-value" class="selectgroup-input" checked>
 												<span class="selectgroup-button">指標數值</span>
 											</label>
 											<label class="selectgroup-item">
-												<input type="checkbox" name="value" value="JavaScript" class="selectgroup-input" checked>
+												<input type="checkbox" name="filter-strategic-stop" value="filter-strategic-stop" class="selectgroup-input" checked>
 												<span class="selectgroup-button">停損停利</span>
 											</label>
 											<label class="selectgroup-item">
-												<input type="checkbox" name="value" value="JavaScript" class="selectgroup-input" checked>
+												<input type="checkbox" name="filter-buy" value="filter-buy" class="selectgroup-input" checked>
 												<span class="selectgroup-button buy">買進</span>
 											</label>
 											<label class="selectgroup-item">
-												<input type="checkbox" name="value" value="JavaScript" class="selectgroup-input" checked>
+												<input type="checkbox" name="filter-sell" value="filter-sell" class="selectgroup-input" checked>
 												<span class="selectgroup-button sell">賣出</span>
 											</label>
 											<label class="selectgroup-item">
-												<input type="checkbox" name="value" value="JavaScript" class="selectgroup-input" checked>
+												<input type="checkbox" name="filter-wait" value="filter-wait" class="selectgroup-input" checked>
 												<span class="selectgroup-button wait">等待</span>
 											</label>
+
 										</div>
 										<button type="button" class="btn btn-outline-light btn-lg" id="alert_demo_5" style="float: right !important; border-radius: 7px !important;">創建策略卡組</button>		
 										<!-- <button type="button" class="btn btn-primary btn-lg" id="alert_demo_5" style="float: right !important; border-radius: 6px !important; border-color: #000000 !important; background: #000065 !important;">創建策略卡組</button>		 -->

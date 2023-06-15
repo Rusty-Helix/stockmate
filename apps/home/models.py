@@ -26,7 +26,12 @@ from django.contrib.auth.models import AbstractUser
 #     REQUIRED_FIELDS = ['username']
 
 class StrategyCard(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, default='empty title')
+    strategyType = models.CharField(max_length=200, default='empty strategyType')
+    signalType = models.CharField(max_length=200, default='empty signal type')
+    cover = models.CharField(max_length=200, default='empty cover')
+    footnote = models.CharField(max_length=200, default='empty footnote')
+    explanation = models.CharField(max_length=2000, default='empty explanation')
     # is_fulfilled = models.BooleanField(default=False)
     def __str__(self):
         return self.title

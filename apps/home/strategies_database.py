@@ -1,159 +1,5 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
 
-from django import template
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
-from django.urls import reverse
 from .models import StrategyCard
-from . import forms
-
-@login_required(login_url="/login/")
-def index(request):
-    context = {'segment': 'index'}
-
-    html_template = loader.get_template('home/index.html')
-    return HttpResponse(html_template.render(context, request))
-
-@login_required(login_url="/login/")
-def pages(request):
-    context = {}
-    # All resource paths end in .html.
-    # Pick out the html file name from the url. And load that template.
-    try:
-        load_template = request.path.split('/')[-1]
-        context['segment'] = load_template
-
-        if 'stock-information' in load_template:
-            if 'overview' in load_template:
-                pass
-            elif 'rankings' in load_template:
-                pass
-            elif 'heatmap' in load_template:
-                pass
-            elif 'news' in load_template:
-                pass
-        elif 'strategy-gallery' in load_template:
-            if 'pool' in load_template:
-
-                # if request.method == 'POST':
-                  # print(request.POST)
-                  # print(request.POST)
-                  # print(request.POST)
-                  # print(request.POST)
-                #   filter_form = forms.FilterForm(request.POST)
-                #   if filter_form.is_valid():
-                #       filter_candlestick_pattern = filter_form.cleaned_data['filter-candlestick-pattern']
-                #       filter_index_trend = filter_form.cleaned_data['filter-index-trend']
-                #       filter_index_value = filter_form.cleaned_data['filter-index-value']
-                #       filter_strategic_stop = filter_form.cleaned_data['filter-strategic-stop']
-                #       filter_strategic_buy = filter_form.cleaned_data['filter-buy']
-                #       filter_strategic_sell = filter_form.cleaned_data['filter-sell']
-                #       filter_strategic_wait = filter_form.cleaned_data['filter-wait']
-
-                # filter = {
-                #     'candlestick-pattern': filter_candlestick_pattern,
-                #     'index-trend': filter_index_trend,
-                #     'index-value': filter_index_value,
-                #     'strategic-stop': filter_strategic_stop,
-                #     'buy': filter_strategic_buy,
-                #     'sell': filter_strategic_sell,
-                #     'wait': filter_strategic_wait
-                #     }
-                
-                # filter_list = []
-
-                # for key, value in filter.items():
-                #     if value:
-                #         filter_list.append(key)
-
-                # for strategy in strategies:                    
-                #     if strategy.strategyType not in filter_list or strategy.signalType not in filter_list:
-                #         strategies.remove(strategy)
- 
-
-
-                for strategy in strategies:
-                    if strategy['cover'] == '':
-                        strategy['cover'] = 'question-mark.jpg'
-                    if strategy['footnote'] == '':
-                        strategy['footnote'] = '備註備註備註'
-                    if strategy['explanation'] == '':
-                        strategy['explanation'] = '描述描述描述'
-                    strategy['cover'] = f'/static/assets/img/candlestick-patterns/' + strategy['cover']
-                    print(strategy)
-                # for strategy in strategies:
-                #   new_strategy = StrategyCard(
-                #           id=strategy.id,
-                #           strategyType=strategy.strategyType,
-                #           signalType=strategy.signalType,
-                #           explanation=strategy.explanation,
-                #           cover=strategy.cover,
-                #           footnote=strategy.footnote,
-                #       )
-                #   print(new_strategy)
-                #   new_strategy.save()
-
-                print(StrategyCard.objects.all().values())
-
-                context['strategies'] = strategies
-                
-                # form = ContactForm(request.POST)
-                # print(strategies[0]['策略名稱'])
-
-            elif 'decks' in load_template:
-                pass
-        elif 'investment-notes' in load_template:
-            if 'all' in load_template:
-                pass
-            elif 'highlights' in load_template:
-                pass
-        elif 'review' in load_template:
-            if 'execution' in load_template:
-                pass
-            elif 'roi' in load_template:
-                pass
-            elif 'timeline' in load_template:
-                pass
-            elif 'line-chart' in load_template:
-                pass
-            elif 'report' in load_template:
-                pass
-
-        
-
-        if load_template == 'admin':
-            return HttpResponseRedirect(reverse('admin:index'))
-
-        html_template = loader.get_template('home/' + load_template)
-        # print(html_template)
-        return HttpResponse(html_template.render(context, request))
-
-# ======================== #
-
-
-    except template.TemplateDoesNotExist:
-        html_template = loader.get_template('home/page-404.html')
-        return HttpResponse(html_template.render(context, request))
-
-    except:
-        html_template = loader.get_template('home/page-500.html')
-        return HttpResponse(html_template.render(context, request))
-
-
-# @login_required(login_url="/login/")
-# def profile(request):
-#     load_template = request.path.split('/')[-1]
-    
-#     context = {}
-#     context['segment'] = load_template
-    
-#     html_template = loader.get_template('home/' + load_template)
-#     return HttpResponse(html_template.render(context, request))
-
 
 strategies = [
   {
@@ -1390,3 +1236,16 @@ strategies = [
     "footnote": ""
   }
 ]
+
+strategyCards = []
+for strategy in strategies:
+    new_strategy = StrategyCard(
+            id=strategy.id,
+            strategyType=strategy.strategyType,
+            signalType=strategy.signalType,
+            explanation=strategy.explanation,
+            cover=strategy.cover,
+            footnote=strategy.footnote,
+        )
+    new_strategy.save()
+    print(StrategyCard.objects.all().values())
