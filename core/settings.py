@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.home'  # Enable the inner home (home)
+    'apps.home',  # Enable the inner home (home)
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -96,22 +97,28 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #         }, 
 #     }
 # else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': 'db.sqlite3',
+#     DAtabases = {
+#         'DEFAULT': {
+#             'engine': 'DJANGO.DB.BACKENDS.SQLITE3',
+#             'name': 'DB.SQLITE3',
 #         }
 #     }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
-        'USER': "root",
-        "PASSWORD": "ARD1eeBqXXKRChiIMCiU",
-        "HOST": "containers-us-west-35.railway.app", # or an IP address that your db is hosted
-        'PORT': '6276',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'railway',
+#         'USER': "root",
+#         "PASSWORD": "ARD1eeBqXXKRChiIMCiU",
+#         "HOST": "containers-us-west-35.railway.app", # or an IP address that your db is hosted
+#         'PORT': '6276',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

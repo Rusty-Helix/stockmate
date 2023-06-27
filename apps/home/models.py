@@ -24,41 +24,111 @@ from django.contrib.auth.models import AbstractUser
 
 #     USERNAME_FIELD = 'email'
 #     REQUIRED_FIELDS = ['username']
-
+class Filter(models.Model):
+    id = models.AutoField(primary_key=True)
+    filterStrategicStop = models.BooleanField(default=True)
+    filterCandlestickPattern = models.BooleanField(default=True)
+    filterIndexValue = models.BooleanField(default=True)
+    filterIndexTrend = models.BooleanField(default=True)
+    filterBuy = models.BooleanField(default=True)
+    filterSell = models.BooleanField(default=True)
+    filterWait = models.BooleanField(default=True)
+    def __str__(self):
+        return 'singleton filter'
+    
 class StrategyCard(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200, default='empty title')
-    strategyType = models.CharField(max_length=200, default='empty strategyType')
-    signalType = models.CharField(max_length=200, default='empty signal type')
-    cover = models.CharField(max_length=200, default='empty cover')
-    footnote = models.CharField(max_length=200, default='empty footnote')
+
+    STRATEGY_TYPE_CHOICES = (
+        ('candlestick pattern', 'candlestick pattern'),
+        ('index value', 'index value'),
+        ('index trend', 'index trend'),
+        ('strategic stop', 'strategic stop'))
+    strategyType = models.CharField(choices=STRATEGY_TYPE_CHOICES, default='free', max_length=200)
+
+    SIGNAL_TYPE_CHOICES = (
+        ('buy', 'buy'),
+        ('sell', 'sell'),
+        ('wait', 'wait'))
+    signalType = models.CharField(choices=SIGNAL_TYPE_CHOICES, default='free', max_length=200)
+
+
     explanation = models.CharField(max_length=2000, default='empty explanation')
+    cover = models.CharField(max_length=200, default='question-mark.jpg')
+    footnote = models.CharField(max_length=200, default='empty footnote')
+
     # is_fulfilled = models.BooleanField(default=False)
     def __str__(self):
         return self.title
 
 class StrategyDeck(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     strategies = models.ManyToManyField(StrategyCard, related_name='deck_strategies', blank=True)
     def __str__(self):
         return self.title
 
-
-class Series(models.Model):
-    # investor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    # adopted_deck = models.ForeignKey(StrategyDeck, on_delete=models.PROTECT, null=True)
+class Note(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
+    body = models.CharField(max_length=2000)
+    updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    strategies = models.ManyToManyField(StrategyCard, related_name='strategy_series', blank=True)
+
+    NOTE_TYPE_CHOICES = (
+        ('buy', 'buy'),
+        ('sell', 'sell'),
+        ('transaction series', 'transaction series'),
+        ('free', 'free'))
+
+    note_type = models.CharField(choices=NOTE_TYPE_CHOICES, default='free', max_length=200)
+
     def __str__(self):
         return self.title
 
-
 class Transaction(models.Model):
+    id = models.AutoField(primary_key=True)
     # transaction_series = models.ForeignKey(Series, on_delete=models.SET_NULL, null=True)
+    ACTION_CHOICES = (('buy', 'buy'),
+                    ('sell', 'sell'))
+
+    actionType = models.CharField(choices=ACTION_CHOICES, max_length=200, default='buy')
     fulfilled_strategies = models.ManyToManyField(StrategyCard, related_name='fulfilled_series', blank=True)
-    annotation = models.CharField(max_length=200)
+    # annotation = models.CharField(max_length=200)
+    note = models.ForeignKey(Note, on_delete=models.SET_NULL, null=True, blank=True)
+
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+
+
     class Meta:
         pass
         # ordering = ['-updated', '-created', 'like_count', 'message_count']
     def __str__(self):
         return self.annotation
+
+
+class TransactionSeries(models.Model):
+    id = models.AutoField(primary_key=True)
+    verbose_name_plural = 'Transaction Series'
+    # investor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    # adopted_deck = models.ForeignKey(StrategyDeck, on_delete=models.PROTECT, null=True)
+    title = models.CharField(max_length=200)
+    created = models.DateTimeField(auto_now_add=True, editable=False, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    adoptedStrategyCard = models.ManyToManyField(StrategyCard, related_name='strategy_series', blank=True)
+    adoptedStrategyDeck = models.ManyToManyField(StrategyDeck, related_name='strategy_series', blank=True)
+
+    # annotation = models.CharField(max_length=200)
+    note = models.ForeignKey(Note, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+
+    def __str__(self):
+        return self.title
+    
