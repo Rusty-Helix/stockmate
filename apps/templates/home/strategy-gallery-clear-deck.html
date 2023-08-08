@@ -1,0 +1,352 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<div class="content">
+		<div class="page-inner">
+			<div class="page-header" style='display: flex'>
+				<h4 class="page-title">組建卡組</h4>
+				<ul class="breadcrumbs">
+					<li class="nav-item">
+						<a href="#">核心功能</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">策略圖鑑</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">組建卡組</a>
+					</li>
+				</ul>
+				{% if not is_building_deck.is_building_deck %}
+				<div style='float: right; margin-left: auto'>
+					<button class="btn btn-secondary" style='float: right; margin-left: auto' type='submit'>新增卡組</button>
+				</div>
+				{% endif %}
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6">
+					
+					
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">
+								清空卡組 "{{current_deck.title}}" 裡所有的卡
+								<code class="highlighter-rouge">(清空所有卡片)</code>
+							</div>
+						</div>
+						<div class="card-body">
+							<button type="button" class="btn btn-danger" id="alert_demo_8">確認清空</button>	
+
+							<table class="table table-bordered table-hover table-head-bg-primary table-bordered-bd-info mt-4">
+								<!-- <table class="table table-head-bg-primary mt-4"></table> -->
+								<thead>
+									<tr>
+										<th scope="col">編號</th>
+										<th scope="col">名稱</th>
+										<th scope="col">類型</th>
+										<th scope="col">進出場</th>
+										<!-- <th scope="col">進出訊號</th> -->
+									</tr>
+								</thead>
+								<tbody>
+								{% for selected_strategy in selected_strategies %}
+								<!-- for end for -->
+									<tr>
+										<td>{{selected_strategy.id}}</td>
+										<td>{{selected_strategy.title}}</td>
+
+										{% if selected_strategy.strategyType == 'candlestick pattern' %}
+										<td>K線型態</td>
+										{% elif selected_strategy.strategyType == 'index value' %}
+										<td>指標數值</td>
+										{% elif selected_strategy.strategyType == 'index trend' %}
+										<td>指標趨勢</td>
+										{% elif selected_strategy.strategyType == 'strategic stop' %}
+										<td>停損停利</td>
+										{% endif %}
+
+
+										{% if selected_strategy.signalType == 'buy' %}
+										<td style='color: #eebbaa;'>買進</td>
+										{% elif selected_strategy.signalType == 'sell' %}
+										<td style='color: lightgreen;'>賣出</td>
+										{% endif %}
+										<!-- <td>@mdo</td> -->			
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="/static/assets/js/setting-demo2.js"></script>
+	<script>
+		$('#displayNotif').on('click', function(){
+			var placementFrom = $('#notify_placement_from option:selected').val();
+			var placementAlign = $('#notify_placement_align option:selected').val();
+			var state = $('#notify_state option:selected').val();
+			var style = $('#notify_style option:selected').val();
+			var content = {};
+
+			content.message = 'Turning standard Bootstrap alerts into "notify" like notifications';
+			content.title = 'Bootstrap notify';
+			if (style == "withicon") {
+				content.icon = 'fa fa-bell';
+			} else {
+				content.icon = 'none';
+			}
+			content.url = 'index.html';
+			content.target = '_blank';
+
+			$.notify(content,{
+				type: state,
+				placement: {
+					from: placementFrom,
+					align: placementAlign
+				},
+				time: 1000,
+			});
+		});
+	</script>
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="/static/assets/js/setting-demo2.js"></script>
+	<script>
+		//== Class definition
+		var SweetAlert2Demo = function() {
+
+			//== Demos
+			var initDemos = function() {
+				//== Sweetalert Demo 1
+				$('#alert_demo_1').click(function(e) {
+					swal('Good job!', {
+						buttons: {        			
+							confirm: {
+								className : 'btn btn-success'
+							}
+						},
+					});
+				});
+
+				//== Sweetalert Demo 2
+				$('#alert_demo_2').click(function(e) {
+					swal("Here's the title!", "...and here's the text!", {
+						buttons: {        			
+							confirm: {
+								className : 'btn btn-success'
+							}
+						},
+					});
+				});
+
+				//== Sweetalert Demo 3
+				$('#alert_demo_3_1').click(function(e) {
+					swal("Good job!", "You clicked the button!", {
+						icon : "warning",
+						buttons: {        			
+							confirm: {
+								className : 'btn btn-warning'
+							}
+						},
+					});
+				});
+
+				$('#alert_demo_3_2').click(function(e) {
+					swal("Good job!", "You clicked the button!", {
+						icon : "error",
+						buttons: {        			
+							confirm: {
+								className : 'btn btn-danger'
+							}
+						},
+					});
+				});
+
+				$('#alert_demo_3_3').click(function(e) {
+					swal("Good job!", "You clicked the button!", {
+						icon : "success",
+						buttons: {        			
+							confirm: {
+								className : 'btn btn-success'
+							}
+						},
+					});
+				});
+
+				$('#alert_demo_3_4').click(function(e) {
+					swal("Good job!", "You clicked the button!", {
+						icon : "info",
+						buttons: {        			
+							confirm: {
+								className : 'btn btn-info'
+							}
+						},
+					});
+				});
+
+				//== Sweetalert Demo 4
+				$('#alert_demo_4').click(function(e) {
+					swal({
+						title: "Good job!",
+						text: "You clicked the button!",
+						icon: "success",
+						buttons: {
+							confirm: {
+								text: "Confirm Me",
+								value: true,
+								visible: true,
+								className: "btn btn-success",
+								closeModal: true
+							}
+						}
+					});
+				});
+
+				$('#alert_demo_5').click(function(e){
+					swal({
+						title: 'Input Something',
+						html: '<br><input class="form-control" placeholder="Input Something" id="input-field">',
+						content: {
+							element: "input",
+							attributes: {
+								placeholder: "Input Something",
+								type: "text",
+								id: "input-field",
+								className: "form-control"
+							},
+						},
+						buttons: {
+							cancel: {
+								visible: true,
+								className: 'btn btn-danger'
+							},        			
+							confirm: {
+								className : 'btn btn-success'
+							}
+						},
+					}).then(
+					function() {
+						swal("", "You entered : " + $('#input-field').val(), "success");
+					}
+					);
+				});
+
+				$('#alert_demo_6').click(function(e) {
+					swal("This modal will disappear soon!", {
+						buttons: false,
+						timer: 3000,
+					});
+				});
+
+				$('#alert_demo_7').click(function(e) {
+					swal({
+						title: 'Are you sure?',
+						text: "You won't be able to revert this!",
+						type: 'warning',
+						buttons:{
+							confirm: {
+								text : 'Yes, delete it!',
+								className : 'btn btn-success'
+							},
+							cancel: {
+								visible: true,
+								className: 'btn btn-danger'
+							}
+						}
+					}).then((Delete) => {
+						if (Delete) {
+							swal({
+								title: 'Deleted!',
+								text: 'Your file has been deleted.',
+								type: 'success',
+								buttons : {
+									confirm: {
+										className : 'btn btn-success'
+									}
+								}
+							});
+						} else {
+							swal.close();
+						}
+					});
+				});
+
+				$('#alert_demo_8').click(function(e) {
+					swal({
+						title: '清空卡片',
+						text: "清空卡組內所有卡片",
+						type: 'warning',
+						buttons:{
+							// cancel: {
+							// 	visible: true,
+							// 	text : 'No, cancel!',
+							// 	className: 'btn btn-danger'
+							// },        			
+							confirm: {
+								text : '確認',
+								className : 'btn btn-success'
+							}
+						}
+					}).then((willDelete) => {
+						if (willDelete) {
+							swal("清空成功", {
+								icon: "success",
+								buttons : {
+									confirm : {
+										className: 'btn btn-success'
+									}
+								}
+							});
+						} else {
+							swal("Your imaginary file is safe!", {
+								buttons : {
+									confirm : {
+										className: 'btn btn-success'
+									}
+								}
+							});
+						}
+					});
+				})
+
+			};
+
+			return {
+				//== Init
+				init: function() {
+					initDemos();
+				},
+			};
+		}();
+
+		//== Class Initialization
+		jQuery(document).ready(function() {
+			SweetAlert2Demo.init();
+		});
+	</script>
+
+{% endblock javascripts %}

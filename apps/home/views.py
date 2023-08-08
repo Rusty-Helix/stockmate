@@ -2,13 +2,20 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
+from django.shortcuts import render, redirect
 
 from django import template
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-from .models import StrategyCard, StrategyDeck, Transaction, TransactionSeries, Note, Filter
+from .models import StrategyCard
+from .models import CurrentDeck
+from .models import StrategyDeck
+from .models import Transaction
+from .models import TransactionSeries
+from .models import Note
+from .models import IsBuildingDeck
 # from . import forms
 
 # import os
@@ -40,132 +47,232 @@ def pages(request):
             elif 'news' in load_template:
                 pass
         elif 'strategy-gallery' in load_template:
-            if 'pool' in load_template:
+            if 'clear-deck' in load_template:
 
+                context['strategies'] = StrategyCard.objects.all()
+                
+                context['selected_count'] = StrategyCard.objects.filter(selected=True).count()
+
+                context['selected_strategies'] = StrategyCard.objects.filter(selected=True)
+                
+                context['unselected_strategies'] = StrategyCard.objects.filter(selected=False)
+
+                context['current_deck'] = CurrentDeck.objects.get(pk=1)
+
+                context['is_building_deck'] = IsBuildingDeck.objects.get(pk=1)
+
+            if 'complete' in load_template:
+
+                
+                strategy_array = []
+                strategy_array.append(StrategyCard.objects.get(id=30))
+                strategy_array.append(StrategyCard.objects.get(id=31))
+                strategy_array.append(StrategyCard.objects.get(id=34))
+                strategy_array.append(StrategyCard.objects.get(id=35))
+                context['strategies'] = strategy_array
+                
+                
+                context['selected_count'] = StrategyCard.objects.filter(selected=True).count()
+
+                context['selected_strategies'] = StrategyCard.objects.filter(selected=True)
+                # print(StrategyCard.objects.filter(selected=True))
+                
+                
+                context['unselected_strategies'] = StrategyCard.objects.filter(selected=False)
+
+                context['current_deck'] = CurrentDeck.objects.get(pk=1)
+
+                context['is_building_deck'] = IsBuildingDeck.objects.get(pk=1)
+
+                selected_ids = ''
+                # for strategy in StrategyCard.objects.filter(selected=True)
+                for strategy in StrategyCard.objects.filter(selected=True):
+                    selected_ids = selected_ids + str(strategy.id)
+                    selected_ids += ' '
+                    # print(strategy.id)
+                # print(selected_ids[:-1])
+                # print(selected_ids[:-2])
+                # print(request.method)
+                
+
+                if request.method == 'GET':
+                  obj = CurrentDeck.objects.get(pk=1)
+                  obj.strategies = selected_ids[:-1]
+                  obj.title = request.GET.get('deck-title')
+                  # StrategyDeck.objects.create(
+                  #   creator = request.user,
+                  #   title = request.GET.get('deck-title'),
+                  #   strategies = selected_ids[:-1], 
+                  # )
+                  # print('333')
+                  # obj.save()
+                  # print('4444')
+
+                  # print(obj.title)
+                  # print(obj.title)
+                  # print(obj.title)
+                  # print(obj.title)
+                  # # print(obj)
+                  # # print(obj)
+                  # # print(obj)
+                  # print(obj.strategies)
+                  # print(obj.strategies)
+                  # print(obj.strategies)
+                  # print(obj.strategies)
+                  # title = request.GET.get('deck-title'),
+                # CurrentDeck.objects.filter(pk=1).update(title = request.GET.get('deck-title'))
+                # print(request.GET.get('deck-title'))
+                # print(request.GET.get('deck-title'))
+                # print(CurrentDeck.objects.get(pk=1).title)
+                # print(CurrentDeck.objects.get(pk=1).title)
+                # print(CurrentDeck.objects.get(pk=1).title)
+                # print(CurrentDeck.objects.get(pk=1).title)
+                #   creator = request.user
+                # )
                 # if request.method == 'POST':
-                  # print(request.POST)
-                  # print(request.POST)
-                  # print(request.POST)
-                  # print(request.POST)
-                #   filter_form = forms.FilterForm(request.POST)
-                #   if filter_form.is_valid():
-                #       filter_candlestick_pattern = filter_form.cleaned_data['filter-candlestick-pattern']
-                #       filter_index_trend = filter_form.cleaned_data['filter-index-trend']
-                #       filter_index_value = filter_form.cleaned_data['filter-index-value']
-                #       filter_strategic_stop = filter_form.cleaned_data['filter-strategic-stop']
-                #       filter_strategic_buy = filter_form.cleaned_data['filter-buy']
-                #       filter_strategic_sell = filter_form.cleaned_data['filter-sell']
-                #       filter_strategic_wait = filter_form.cleaned_data['filter-wait']
 
-                # filter = {
-                #     'candlestick-pattern': filter_candlestick_pattern,
-                #     'index-trend': filter_index_trend,
-                #     'index-value': filter_index_value,
-                #     'strategic-stop': filter_strategic_stop,
-                #     'buy': filter_strategic_buy,
-                #     'sell': filter_strategic_sell,
-                #     'wait': filter_strategic_wait
-                #     }
+            if 'newest' in load_template:
+                context['strategies'] = StrategyCard.objects.all()
                 
-                # filter_list = []
+                context['selected_count'] = StrategyCard.objects.filter(selected=True).count()
 
-                # for key, value in filter.items():
-                #     if value:
-                #         filter_list.append(key)
-
-
-
-
-                # for strategy in strategies:                    
-                #     newStrategyCard = StrategyCard.objects.create(
-                #           # id=strategy.id,
-                #           title=strategy['title'],
-                #           strategyType=strategy['strategyType'],
-                #           signalType=strategy['signalType'],
-                #           explanation=strategy['explanation'],
-                #           cover=strategy['cover'],
-                #           footnote=strategy['footnote'],
-                #         )
-
-                #     newStrategyCard.save()
-                #     print(StrategyCard.objects.all())
-
-
-
-                # for strategy in strategies:
-                # strategy = strategies[0]
-                # print(StrategyCard.objects.all().values())
-                  # newStrategyCard = StrategyCard(
-                  #         id=strategy.id,
-                  #         strategyType=strategy.strategyType,
-                  #         signalType=strategy.signalType,
-                  #         explanation=strategy.explanation,
-                  #         cover=strategy.cover,
-                  #         footnote=strategy.footnote,
-                  #     )
-                #   print(new_strategy)
-                #   new_strategy.save(commit=True)
-
-                # print(StrategyCard.objects.all().values())
-
-                # for strategy in strategies:
-                    # print(strategy.title)
-                for strategy in StrategyCard.objects.all():
-                    # print(strategy)
-                    if r'//static' in strategy.cover:
-                        strategy.cover = f'/static/assets/img/' + 'question-mark.jpg'
-                    if strategy.cover.endswith('/static/assets/img/candlestick-patterns/question-mark.jpg'):
-                        strategy.cover = f'/static/assets/img/' + 'question-mark.jpg'
-                    if not strategy.cover.startswith('/static/assets/img/candlestick-patterns/'):  
-                      strategy.cover = f'/static/assets/img/candlestick-patterns/' + strategy.cover
-                      strategy.save()
+                context['selected_strategies'] = StrategyCard.objects.filter(selected=True)
                 
-                # if request.method == 'POST':
-                #     filterCandlestickPattern = request.POST.get('filter-candlestick-pattern')
-                #     filterIndexTrend = request.POST.get('filter-index-trend')
-                #     filterIndexValue = request.POST.get('filter-index-value')
-                #     filterStrategicStop = request.POST.get('filter-strategic-stop')
-                #     filterSell = request.POST.get('filter-sell')
-                #     filterBuy = request.POST.get('filter-buy')
-                #     filterWait = request.POST.get('filter-wait')
-                #     singletonFilter = Filter.objects.all()[0]
+                context['unselected_strategies'] = StrategyCard.objects.filter(selected=False)
 
-                #     singletonFilter.filterCandlestickPattern=filterCandlestickPattern
-                #     singletonFilter.filterIndexTrend=filterIndexTrend
-                #     singletonFilter.filterIndexValue=filterIndexValue
-                #     singletonFilter.filterStrategicStop=filterStrategicStop
-                #     singletonFilter.filterSell=filterSell
-                #     singletonFilter.filterBuy= filterBuy
-                #     singletonFilter.filterWait=filterWait
+                context['current_deck'] = CurrentDeck.objects.get(pk=1)
 
-                #     singletonFilter.save()
-                #     context['strategies'] = StrategyCard.objects.all() 
-                #     context['filter'] = singletonFilter
-                #     html_template = loader.get_template('home/strategy-gallery-pool.html')
-                #     return HttpResponse(html_template.render(context, request))
+                context['is_building_deck'] = IsBuildingDeck.objects.get(pk=1)
+                # print(CurrentDeck.objects.get(pk=1).strategies)
+                # StrategyDeck.objects.create(
+                #   title = CurrentDeck.objects.get(pk=1).title,
+                #   strategies = CurrentDeck.objects.get(pk=1).strategies,
+                #   creator = request.user
+                # )
+                # print(CurrentDeck.objects.get(pk=1).strategies)
+                StrategyCard.objects.filter(selected=True).update(selected=False)
 
-                context['strategies'] = StrategyCard.objects.all() 
-                # context['filter'] = Filter.objects.all()[0]
+                # return redirect("/strategy-gallery-decks.html")
+
+            if 'build' in load_template:
                 
-                # form = ContactForm(request.POST)
-                # print(strategies[0]['策略名稱'])
+                # print(request.method*1000)
+                if request.method=='GET':
+                  
+
+                  # prev_selected_ids = []
+                  # for strategy in StrategyCard.objects.filter(selected=True):
+                  #     prev_selected_ids.append(strategy.id)
+                  # print(prev_selected_ids)
+
+                  selected_ids = request.GET.getlist('imagecheck')
+                  if len(selected_ids)==0:
+                    StrategyCard.objects.filter(selected=True).update(selected=False)
+                      
+                  # if selected_ids.isEmpty():
+                      
+                  # print(request.GET.getlist('imagecheck'))
+                  # for i in selected_ids:
+                  #     print(i)
+
+                  # if not is_intact:
+                  for id in selected_ids:
+                      obj = StrategyCard.objects.get(pk=id)
+                      obj.selected = True
+                      obj.save()
+                  # for i in range(1, 1+StrategyCard.objects.all().count()):
+                  #     if i in request.POST:
+                  #       print(i)
+                  #       obj = StrategyCard.objects.get(pk=i)
+                  #       obj.selected = False
+                  #       obj.save()
+                  # if request.method == 'POST':
+                    
+                  
+                  # is_intact = True
+                  # for id in selected_ids:
+                  #     if StrategyCard.objects.get(pk=id).selected == False:
+                  #         is_intact = False
+                  # else:
+                  # for obj in StrategyCard.objects.all():
+                  #     obj.selected = False
+
+
+                context['strategies'] = StrategyCard.objects.all()
+                
+                context['selected_count'] = StrategyCard.objects.filter(selected=True).count()
+
+                context['selected_strategies'] = StrategyCard.objects.filter(selected=True)
+                
+                context['unselected_strategies'] = StrategyCard.objects.filter(selected=False)
+
+                context['current_deck'] = CurrentDeck.objects.get(pk=1)
+
+                context['is_building_deck'] = IsBuildingDeck.objects.get(pk=1)
+                # post = request.POST
+
+                # print(checked_strategy_cards)
+                # print(post)
+                # context['strategies'] = StrategyCard.objects.filter
 
             elif 'decks' in load_template:
-                pass
+                strategy_array = []
+                strategy_array.append(StrategyCard.objects.get(id=30))
+                strategy_array.append(StrategyCard.objects.get(id=31))
+                strategy_array.append(StrategyCard.objects.get(id=34))
+                strategy_array.append(StrategyCard.objects.get(id=35))
+                context['strategies'] = strategy_array
+                
             elif 'buy' in load_template:
-                pass
+                # context['strategies'] = StrategyCard.objects.all()
+                context['strategies'] = StrategyCard.objects.filter(signalType='buy')
+                for strategy in strategies:
+                    # print(strategy['signalType'])
+                    # print(strategy.signalType)
+                    # print(context['strategies'])
+                    # for strategy in strategies:
+                    print(strategy['cover'])
+                    StrategyCard.objects.create(
+                      id = strategy['id'],
+                      title = strategy['title'],
+                      cover = '/static/assets/img/candlestick-patterns/'+strategy['cover'],
+                      signalType = strategy['signalType'],
+                      strategyType = strategy['strategyType'],
+                      explanation = strategy['explanation']
+                    )
+                    # strategies=StrategyCard.objects.filter(selected=True)
+                    #     print(strategy['id'])
+                    #     print(strategy['title'])
+                    #     print(strategy['cover'])
+                    #     print(strategy['signalType'])
+                    # print(strategy['title'])
+                    # print(strategy.title)
+                    # print(strategy.explanation)
+
             elif 'sell' in load_template:
-                pass
+                context['strategies'] = StrategyCard.objects.filter(signalType='sell')
+                # print(context['strategies'])
+
             elif 'wait' in load_template:
-                pass
+                context['strategies'] = StrategyCard.objects.filter(signalType='wait')
             elif 'candlestick-pattern' in load_template:
-                pass
+                context['strategies'] = StrategyCard.objects.filter(strategyType='candlestick pattern')
             elif 'index-trend' in load_template:
-                pass
+                context['strategies'] = StrategyCard.objects.filter(strategyType='index trend')
             elif 'index-value' in load_template:
-                pass
+                context['strategies'] = StrategyCard.objects.filter(strategyType='index value')
             elif 'strategic-stop' in load_template:
+                context['strategies'] = StrategyCard.objects.filter(strategyType='strategic stop')
+        elif 'paper-trading' in load_template:
+            if 'manual-back' in load_template:
+                if request.method == 'GET':
+                    print(request.GET.get('note-body'))                
+                    print(request.GET.get('note-time'))                
+
+
+            if 'manual-forward' in load_template:
                 pass
+
         elif 'investment-notes' in load_template:
             if 'all' in load_template:
                 pass
@@ -174,12 +281,16 @@ def pages(request):
         elif 'review' in load_template:
             if 'execution' in load_template:
                 pass
+            
             elif 'roi' in load_template:
                 pass
+            
             elif 'timeline' in load_template:
                 pass
+            
             elif 'line-chart' in load_template:
                 pass
+
             elif 'report' in load_template:
                 pass
 
@@ -724,7 +835,7 @@ strategies = [
     "id": 57,
     "title": "墓碑十字/倒T十字",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "開盤價與收盤價相同，上影線長，無下影線，預示底部反轉。",
     "cover": "Gravestone_Doji.png",
     "footnote": "一日K線"
@@ -787,7 +898,7 @@ strategies = [
     "id": 64,
     "title": "風高浪大線/長腳十字線",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "具有極長的上/下影線與短的實體，預示著趨勢反轉。",
     "cover": "High_Wave_Candle.png",
     "footnote": "三日K線"
@@ -985,7 +1096,7 @@ strategies = [
     "id": 86,
     "title": "家鴿",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "與母子線類似，二日K線顏色相同，第二日最高價、最低價都在第一日實體之内。",
     "cover": "Homing_Pigeon_Bullish.png",
     "footnote": "二日K線"
@@ -1039,7 +1150,7 @@ strategies = [
     "id": 92,
     "title": "反沖型態（由較長缺影線決定的反沖型態)",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "與反沖型態類似，較長缺影線決定價格的漲跌。",
     "cover": "Kicking_bullbear_determined_by_the_longer_marubozu_Block.png",
     "footnote": "二日K線"
@@ -1057,7 +1168,7 @@ strategies = [
     "id": 94,
     "title": "長腳十字",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "開盤價與收盤價相同居當日價格中部，上下影線長，表達市場不確定性。",
     "cover": "Long_Legged_Doji_Bullish.png",
     "footnote": "一日K線"
@@ -1066,7 +1177,7 @@ strategies = [
     "id": 95,
     "title": "長蠟燭線",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "K線實體長，無上下影線。",
     "cover": "Long_Line_Candle_Block.png",
     "footnote": "一日K線"
@@ -1147,7 +1258,7 @@ strategies = [
     "id": 104,
     "title": "黃包車夫線",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "與長腿十字線類似，若實體正好處於價格振幅中點，稱為黃包車夫。",
     "cover": "Rickshaw Man.png",
     "footnote": "一日K線"
@@ -1201,7 +1312,7 @@ strategies = [
     "id": 110,
     "title": "短蠟燭線",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "具有較短實體和上下影線的一根蠟燭線。此型態並不表示任何看漲或者看跌。",
     "cover": "Short Line Candle.png",
     "footnote": "一日K線"
@@ -1210,7 +1321,7 @@ strategies = [
     "id": 111,
     "title": "紡錘線",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "實體小。",
     "cover": "Spinning Top.png",
     "footnote": "一日K線"
@@ -1237,7 +1348,7 @@ strategies = [
     "id": 114,
     "title": "探水竿",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "大致與蜻蜓十字相同，下影線長度長。",
     "cover": "Takuri.png",
     "footnote": "一日K線"
@@ -1273,7 +1384,7 @@ strategies = [
     "id": 118,
     "title": "三星形態",
     "strategyType": "candlestick pattern",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "由三個十字組成，第二日十字必須高於或者低於第一日和第三日，預示著反轉。",
     "cover": "Tristar Pattern.png",
     "footnote": "三日K線"
@@ -1372,7 +1483,7 @@ strategies = [
     "id": 129,
     "title": "OBP",
     "strategyType": "index trend",
-    "signalType": "non",
+    "signalType": "wait",
     "explanation": "整日對比股價上升日的交易量累計 - 整日對比股價下跌的交易量累計。",
     "cover": "",
     "footnote": ""

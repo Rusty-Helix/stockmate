@@ -12,7 +12,7 @@
 	<div class="content">
 		<div class="page-inner">
 			<div class="page-header">
-				<h4 class="page-title">策略卡池</h4>
+				<h4 class="page-title">停損停利</h4>
 				<ul class="breadcrumbs">
 					<li class="nav-home">
 						<a href="#">
@@ -30,7 +30,13 @@
 						<i class="flaticon-right-arrow"></i>
 					</li>
 					<li class="nav-item">
-						<a href="#">策略卡池</a>
+						<a href="#">策略分類</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="/strategy-gallery-strategic-stop.html">停損停利</a>
 					</li>
 				</ul>
 			</div>
@@ -38,75 +44,6 @@
 				<div class="col-lg-12">
 					<div class="card" style="flex-direction: column">
 						<div class="card-header" style="flex-direction: row">
-									<div class="form-group">
-										<!-- <label class="form-label">策略篩選器</label><br> -->
-										<form>
-		
-										<button
-											type="button" class="btn btn-primary"
-											style="border-radius: 6px !important; margin-right: 8px !important;">
-											<!-- <span class="btn-label">
-												<i class="fa fa-filter" style="border-radius: 6px !important; width: 18px !important;"></i>
-											</span> -->
-											<input type="submit" value="篩選" style='background-color:transparent; border-color: transparent; font-size: 1.2rem; color: white'/>
-										</button>
-										
-										<div class="selectgroup selectgroup-pills">
-											<label class="selectgroup-item">
-												<input type="checkbox" name="filter-candlestick-pattern" value="filter-candlestick-pattern" class="selectgroup-input" checked>
-												<span class="selectgroup-button">K線型態</span>
-											</label>
-											<label class="selectgroup-item">
-												<input type="checkbox" name="filter-index-trend" value="filter-index-trend" class="selectgroup-input" checked>
-												<span class="selectgroup-button">指標趨勢</span>
-											</label>
-											<label class="selectgroup-item">
-												<input type="checkbox" name="filter-index-value" value="filter-trend-value" class="selectgroup-input" checked>
-												<span class="selectgroup-button">指標數值</span>
-												<!-- {% if filter.filterIndexValue %} -->
-												<!-- {% else %}
-												<input type="checkbox" name="filter-index-value" value="filter-trend-value" class="selectgroup-input" checked="unchecked">
-												{% endif %} -->
-											</label>
-											<label class="selectgroup-item">
-												<input type="checkbox" name="filter-strategic-stop" value="filter-strategic-stop" class="selectgroup-input" checked>
-												<span class="selectgroup-button">停損停利</span>
-												<!-- {% if filter.filterStrategicStop %} -->
-												<!-- {% else %}
-												<input type="checkbox" name="filter-strategic-stop" value="filter-strategic-stop" class="selectgroup-input" checked="unchecked">
-												{% endif %} -->
-											</label>
-											<label class="selectgroup-item">
-												<input type="checkbox" name="filter-buy" value="filter-buy" class="selectgroup-input" checked>
-												<span class="selectgroup-button buy">買進</span>
-												<!-- {% if filter.filterBuy %} -->
-												<!-- {% else %}
-												<input type="checkbox" name="filter-buy" value="filter-buy" class="selectgroup-input" checked="unchecked">
-												{% endif %} -->
-											</label>
-											<label class="selectgroup-item">
-												<input type="checkbox" name="filter-sell" value="filter-sell" class="selectgroup-input" checked>
-												<span class="selectgroup-button sell">賣出</span>
-												<!-- {% if filter.filterSell %} -->
-												<!-- {% else %}
-												<input type="checkbox" name="filter-sell" value="filter-sell" class="selectgroup-input" checked="unchecked">
-												{% endif %} -->
-											</label>
-											<label class="selectgroup-item">
-												<input type="checkbox" name="filter-wait" value="filter-wait" class="selectgroup-input" checked>
-												<span class="selectgroup-button wait">等待</span>
-												<!-- {% if filter.filterWait %} -->
-												<!-- {% else %}
-												<input type="checkbox" name="filter-wait" value="filter-wait" class="selectgroup-input" checked="unchecked">
-												{% endif %} -->
-											</label>
-
-										</div>
-										<button type="button" class="btn btn-outline-light btn-lg" id="alert_demo_5" style="float: right !important; border-radius: 7px !important;">創建策略卡組</button>		
-										</form>
-										<!-- <button type="button" class="btn btn-primary btn-lg" id="alert_demo_5" style="float: right !important; border-radius: 6px !important; border-color: #000000 !important; background: #000065 !important;">創建策略卡組</button>		 -->
-									</div>
-
 
 							<!-- <div>
 								<p class="card-title">所有策略卡</p>
@@ -156,7 +93,10 @@
 														</a>
 													</div> -->
 													<div class="view-profile">
-														<a href="#" class="btn btn-dark btn-block">{{strategy.title}}</a>
+														<!-- <button popovertarget="{{strategy.id}}">{{strategy.title}}</button> -->
+														<button href="#" class="btn btn-dark btn-block"  popovertarget="{{strategy.id}}">{{strategy.title}}</button>
+														<div popover id="{{strategy.id}}" class='popover__wrapper' style='background-color: black; color: white; text-align: center; font-size: 20px; max-width: 30vw'>
+															{{strategy.explanation}}</div>
 													</div>
 												</div>
 											</div>

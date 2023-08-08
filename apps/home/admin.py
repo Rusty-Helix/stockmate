@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Filter, Note, TransactionSeries, Transaction, StrategyDeck, StrategyCard
+from .models import IsBuildingDeck, Note, TransactionSeries, Transaction, CurrentDeck, StrategyDeck, StrategyCard
 
 # from import_export import resources
 # from import_export.admin import ImportExportModelAdmin
@@ -20,9 +20,10 @@ admin.site.register(TransactionSeries)
 admin.site.register(Transaction)
 
 admin.site.register(StrategyDeck)
+admin.site.register(CurrentDeck)
 
 admin.site.register(StrategyCard)
 # admin.site.register(StrategyCardAdmin)
 
 admin.site.register(Note)
-admin.site.register(Filter)
+admin.site.register(IsBuildingDeck)

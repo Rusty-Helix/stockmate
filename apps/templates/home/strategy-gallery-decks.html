@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} UI Datatables {% endblock %} 
+{% block title %} Tables {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -10,7 +10,7 @@
 	<div class="content">
 		<div class="page-inner">
 			<div class="page-header">
-				<h4 class="page-title">策略卡組</h4>
+				<h4 class="page-title">我的卡組</h4>
 				<ul class="breadcrumbs">
 					<li class="nav-home">
 						<a href="#">
@@ -28,75 +28,301 @@
 						<i class="flaticon-right-arrow"></i>
 					</li>
 					<li class="nav-item">
-						<a href="#">策略卡組</a>
+						<a href="#">我的卡組</a>
 					</li>
 				</ul>
 			</div>
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-6">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">你的收藏</h4>
+							<h4 class="card-title">已組建的卡組</h4>
 						</div>
 						<div class="card-body">
-							<div class="table-responsive">
-									<div class="form-group">
-										<label class="form-label">卡組1</label>
-										<div class="row">
+							<div class="row">
+								<div class="col-5 col-md-4">
+									<div class="nav flex-column nav-pills nav-secondary nav-pills-no-bd" id="v-pills-tab-without-border" role="tablist" aria-orientation="vertical">
+										<a class="nav-link active" id="v-pills-1-tab-nobd" data-toggle="pill" href="#v-pills-1-nobd" role="tab" aria-controls="v-pills-home-nobd" aria-selected="true">新手Demo的第一個卡組</a>
+										<a class="nav-link" id="v-pills-2-tab-nobd" data-toggle="pill" href="#v-pills-2-nobd" role="tab" aria-controls="v-pills-profile-nobd" aria-selected="false">當沖短線適用策略</a>
+										<!-- <a class="nav-link" id="v-pills-3-tab-nobd" data-toggle="pill" href="#v-pills-3-nobd" role="tab" aria-controls="v-pills-messages-nobd" aria-selected="false">新手易用策略</a>
+										<a class="nav-link" id="v-pills-3-tab-nobd" data-toggle="pill" href="#v-pills-3-nobd" role="tab" aria-controls="v-pills-messages-nobd" aria-selected="false">大師策略1</a>
+										<a class="nav-link" id="v-pills-3-tab-nobd" data-toggle="pill" href="#v-pills-3-nobd" role="tab" aria-controls="v-pills-messages-nobd" aria-selected="false">大師策略2</a> -->
+									</div>
+								</div>
+								<div class="col-7 col-md-8">
+									<div class="tab-content" id="v-pills-without-border-tabContent">
+										<div class="tab-pane fade show active" id="v-pills-1-nobd" role="tabpanel" aria-labelledby="v-pills-home-tab-nobd">
+											<div class="card">
+												<div class="card-header">
+													<div class="card-title">新手的第一個卡組</div>
+												</div>
+												<div class="card-body">
+													<!-- <div class="card-sub">
+														當前組建卡組 <code class="highlighter-rouge">(朱家泓策略實踐)</code>
+													</div> -->
 
-											<div class="col-lg-2">
-
-										<div class="card card-profile">
-
-											<div class="card-header" style="background-image: url('/static/assets/img/question-mark.jpg')">
-												<!-- <img src='#' width="100%" height="100%" alt="..."> -->
-												<label class="imagecheck" style="height: 100%; width: 100%">
-													<input name="imagecheck" type="checkbox" value="1" class="imagecheck-input">
-													<figure class="imagecheck-figure" style="width: 100%; height: 100%">
-														<img src="/static/assets/img/question-mark.jpg" width="100%" height="100%" alt="title" class="imagecheck-image">
-													</figure>
-												</label>
-											</div>
-
-											<div class="card-body">
-												<div class="user-profile text-center">
-
-													<div class="view-profile">
-														<a href="#" class="btn btn-dark btn-block">卡組1</a>
-													</div>
+													<table class="table table-bordered table-hover table-head-bg-primary table-bordered-bd-info mt-4">
+														<!-- <table class="table table-head-bg-primary mt-4"></table> -->
+														<thead>
+															<tr>
+																<th scope="col">編號</th>
+																<th scope="col">名稱</th>
+																<th scope="col">類型</th>
+																<th scope="col">進出場</th>
+															</tr>
+														</thead>
+														<tbody>
+														<!-- for end for -->
+														<tr>
+																<td>30</td>
+																<td>黃金交叉</td>
+																<td>指標趨勢</td>
+																<td>買進</td>
+																
+															</tr>
+															<tr>
+																<td>31</td>
+																<td>死亡交叉</td>
+																<td>指標趨勢</td>
+																<td>賣出</td>
+															</tr>
+															<tr>
+																<td>34</td>
+																<td>RSI超賣</td>
+																<td>指標數值</td>
+																<td>買進</td>
+															</tr>
+															<tr>
+																<td>35</td>
+																<td>RSI超買</td>
+																<td>指標數值</td>
+																<td>賣出</td>
+															</tr>
+														</tbody>
+													</table>
+													<button class="btn btn-primary" style='float: right' type='submit'>編輯</button>
 												</div>
 											</div>
-
-											<div class="card-footer">
-												<div class="row user-stats text-center">
-													<div class="col">
-														<div class="title">規則數</div>
-													</div>
-													<div class="col">
-														<div class="title">套用數</div>
-													</div>
-												</div>
-											</div>
-
 										</div>
+										<div class="tab-pane fade" id="v-pills-2-nobd" role="tabpanel" aria-labelledby="v-pills-profile-tab-nobd">
+											<div class="card">
+												<div class="card-header">
+													<div class="card-title">當沖短線適用策略</div>
+												</div>
+												<div class="card-body">
+													<!-- <div class="card-sub">
+														當前組建卡組 <code class="highlighter-rouge">(朱家泓策略實踐)</code>
+													</div> -->
 
-
+													<table class="table table-bordered table-hover table-head-bg-primary table-bordered-bd-info mt-4">
+														<!-- <table class="table table-head-bg-primary mt-4"></table> -->
+														<thead>
+															<tr>
+																<th scope="col">編號</th>
+																<th scope="col">名稱</th>
+																<th scope="col">類型</th>
+																<th scope="col">進出場</th>
+															</tr>
+														</thead>
+														<tbody>
+														<!-- for end for -->
+														<tr>
+																<td>19</td>
+																<td>捉腰帶線(熊))</td>
+																<td>K線型態</td>
+																<td>賣出</td>
+															</tr>
+															<tr>
+																<td>20</td>
+																<td>藏嬰吞沒</td>
+																<td>K線型態</td>
+																<td>買進</td>
+															</tr>
+															<tr>
+																<td>24</td>
+																<td>CCI 正穿越</td>
+																<td>指標數值</td>
+																<td>買進</td>
+															</tr>
+															<tr>
+																<td>26</td>
+																<td>MACD柱線(hist)多頭</td>
+																<td>指標數值</td>
+																<td>買進</td>
+																
+															</tr>
+															<tr>
+																<td>30</td>
+																<td>RSI 超賣</td>
+																<td>指標數值</td>
+																<td>買進</td>
+															</tr>
+														</tbody>
+													</table>
+													<button class="btn btn-primary" style='float: right' type='submit'>編輯</button>
+												</div>
 											</div>
-											
+										</div>
+										<div class="tab-pane fade" id="v-pills-3-nobd" role="tabpanel" aria-labelledby="v-pills-messages-tab-nobd">
+											<div class="card">
+												<div class="card-header">
+													<div class="card-title">新手易用策略</div>
+												</div>
+												<div class="card-body">
+													<!-- <div class="card-sub">
+														當前組建卡組 <code class="highlighter-rouge">(朱家泓策略實踐)</code>
+													</div> -->
+
+													<table class="table table-bordered table-hover table-head-bg-primary table-bordered-bd-info mt-4">
+														<!-- <table class="table table-head-bg-primary mt-4"></table> -->
+														<thead>
+															<tr>
+																<th scope="col">編號</th>
+																<th scope="col">名稱</th>
+																<th scope="col">類型</th>
+																<th scope="col">進出場</th>
+															</tr>
+														</thead>
+														<tbody>
+														<!-- for end for -->
+														<tr>
+																<td>10</td>
+																<td>三白兵</td>
+																<td>K線型態</td>
+																<td>買進</td>
+																
+															</tr>
+															<tr>
+																<td>12</td>
+																<td>棄嬰(牛)</td>
+																<td>K線型態</td>
+																<td>買進</td>
+															</tr>
+															<tr>
+																<td>34</td>
+																<td>KD黃金交叉</td>
+																<td>指標趨勢</td>
+																<td>買進</td>
+															</tr>
+															<tr>
+																<td>35</td>
+																<td>KD死亡交叉</td>
+																<td>指標趨勢</td>
+																<td>賣出</td>
+															</tr>
+														</tbody>
+													</table>
+													<button class="btn btn-primary" style='float: right' type='submit'>編輯</button>
+												</div>
+											</div>
 										</div>
 									</div>
-
-
-
-									
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				
+				<div class="col-md-6">
+						
+						
+						<!-- {% csrf_token %} -->
+						<!-- <form method='post' class="card" action='/strategy-gallery-build.html'> -->
+						{% csrf_token %}
+						<div class="card-header">
+								<div class="card-title">
+									<!-- 策略卡池
+									<button class="btn btn-primary" style='float: right' type='submit'>添加至當前卡組</button> -->
 
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<!-- <label class="form-label">Image Check</label> -->
+									<div class='row' style='height: 600px'>
+										{% for strategy in strategies %}
+										
+										<div class="col-lg-4">
+											<div class="card card-profile">
+												<div class="card-header" style="background-image: url('/static/assets/img/question-mark.jpg')">
+													<label class="imagecheck" style="height: 100%; width:100%">
+														<input name="imagecheck" type="checkbox" value={{strategy.id}} class="imagecheck-input" {% if strategy.selected %} checked {% endif %}>
+														<figure class="imagecheck-figure" style="width:100%; height: 100%">
+															{% if strategy.cover != '' %}
+															<img src={{strategy.cover}} width="100%" height="100%" alt="...">
+															{% else %}
+															<!-- <img src='/static/assets/img/question-mark.jpg' width="100%" height="100%" alt="..."> -->
+															{% endif %}
+														</figure> 
+													</label>
+												</div>
+												<div class="card-body">
+													<div class="user-profile text-center">
+														<!-- <div class="name">{{strategy.title}}</div> -->
+														<!-- <div class="job">Frontend Developer</div>
+														<div class="desc">A man who hates loneliness</div> -->
+														<!-- <div class="social-media">
+															<a class="btn btn-info btn-twitter btn-sm btn-link" href="#"> 
+																<span class="btn-label just-icon"><i class="flaticon-twitter"></i> </span>
+															</a>
+															<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
+																<span class="btn-label just-icon"><i class="flaticon-google-plus"></i> </span> 
+															</a>
+															<a class="btn btn-primary btn-sm btn-link" rel="publisher" href="#"> 
+																<span class="btn-label just-icon"><i class="flaticon-facebook"></i> </span> 
+															</a>
+															<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
+																<span class="btn-label just-icon"><i class="flaticon-dribbble"></i> </span> 
+															</a>
+														</div> -->
+													<div class="view-profile">
+														<!-- <button popovertarget="{{strategy.id}}">{{strategy.title}}</button> -->
+														<button class="btn btn-dark btn-block"  popovertarget="{{strategy.id}}">{{strategy.title}}</button>
+													</div>
+														
+													</div>
+												</div>
+												<div class="card-footer">
+													<div class="row user-stats text-center">
+														<div class="col">
+															<!-- <div class="number">125</div> -->
+															{% if strategy.strategyType == 'candlestick pattern' %}
+															<div class="title">K線</div>
+															{% elif strategy.strategyType == 'index value' %}
+															<div class="title">數值</div>
+															{% elif strategy.strategyType == 'index trend' %}
+															<div class="title">趨勢</div>
+															{% elif strategy.strategyType == 'strategic stop' %}
+															<div class="title">停損</div>
+															{% else %}
+															<div class="title">未分類</div>
+															{% endif %}
+														</div>
+														<div class="col">
+															<!-- <div class="number">25K</div> -->
+															{% if strategy.signalType == 'buy' %}
+															<div class="title">買進</div>
+															{% elif strategy.signalType == 'sell' %}
+															<div class="title">賣出</div>
+															{% elif strategy.signalType == 'non' %}
+															<div class="title">等待</div>
+															{% endif %}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 {% endblock content %}
 
@@ -105,53 +331,33 @@
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="/static/assets/js/setting-demo2.js"></script>
-	<script >
-		$(document).ready(function() {
-			$('#basic-datatables').DataTable({
-			});
+	<script>
+		$('#displayNotif').on('click', function(){
+			var placementFrom = $('#notify_placement_from option:selected').val();
+			var placementAlign = $('#notify_placement_align option:selected').val();
+			var state = $('#notify_state option:selected').val();
+			var style = $('#notify_style option:selected').val();
+			var content = {};
 
-			$('#multi-filter-select').DataTable( {
-				"pageLength": 5,
-				initComplete: function () {
-					this.api().columns().every( function () {
-						var column = this;
-						var select = $('<select class="form-control"><option value=""></option></select>')
-						.appendTo( $(column.footer()).empty() )
-						.on( 'change', function () {
-							var val = $.fn.dataTable.util.escapeRegex(
-								$(this).val()
-								);
+			content.message = 'Turning standard Bootstrap alerts into "notify" like notifications';
+			content.title = 'Bootstrap notify';
+			if (style == "withicon") {
+				content.icon = 'fa fa-bell';
+			} else {
+				content.icon = 'none';
+			}
+			content.url = 'index.html';
+			content.target = '_blank';
 
-							column
-							.search( val ? '^'+val+'$' : '', true, false )
-							.draw();
-						} );
-
-						column.data().unique().sort().each( function ( d, j ) {
-							select.append( '<option value="'+d+'">'+d+'</option>' )
-						} );
-					} );
-				}
-			});
-
-			// Add Row
-			$('#add-row').DataTable({
-				"pageLength": 5,
-			});
-
-			var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-			$('#addRowButton').click(function() {
-				$('#add-row').dataTable().fnAddData([
-					$("#addName").val(),
-					$("#addPosition").val(),
-					$("#addOffice").val(),
-					action
-					]);
-				$('#addRowModal').modal('hide');
-
+			$.notify(content,{
+				type: state,
+				placement: {
+					from: placementFrom,
+					align: placementAlign
+				},
+				time: 1000,
 			});
 		});
 	</script>
-
+	
 {% endblock javascripts %}

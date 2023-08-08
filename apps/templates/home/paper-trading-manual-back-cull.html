@@ -387,117 +387,12 @@ li.highcharts-active {
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<div class="d-flex align-items-center">
-								<h4 class="card-title">交易紀錄</h4>
-								<button 
-									class="btn btn-primary btn-round ml-auto"
-									data-toggle="modal"
-									data-target="#addSeriesModal">
-									<i class="fa fa-plus"></i>
-									新增交易序列
-								</button>
-							</div>
+							<h4 class="card-title">Multi Filter Select</h4>
 						</div>
-
 						<div class="card-body">
-
-							<div class="modal fade" id="addSeriesModal" tabindex="-1" role="dialog" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header no-bd">
-											<h5 class="modal-title">
-												<span class="fw-mediumbold">
-												New</span>
-												<span class="fw-light">
-													Row
-												</span>
-											</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<p class="small">Create a new row using this form, make sure you fill them all</p>
-											<form>
-											<!-- <form action='/paper-trading-manual-back.html'> -->
-												<div class="row">
-                          <div class="col-sm-12">
-                            <div class="form-group form-group-default">
-															<label>交易序列名稱</label>
-															<input id="addSeriesName" name='note-body' type="text" class="form-control" placeholder="交易序列名稱">
-														</div>
-													</div>
-													<div class="col-sm-12">
-                            <div class="form-group form-group-default">
-                              <label>股票名稱</label>
-															<input id="addStock" name='note-body' type="text" class="form-control" placeholder="股票名稱">
-														</div>
-													</div>
-                          <div class="col-sm-12">
-                            <div class="form-group form-group-default">
-                              <label>交易發起時間</label>
-                              <input id="addDate" name='note-time' type="datetime-local" class="form-control" style='color:white'>
-                            </div>
-                          </div>
-													<div class="col-sm-12">
-														<div class="form-group form-group-default">
-															<label>投入資金</label>
-															<input id="addCapital" name='note-body' type="text" class="form-control" placeholder="投入資金">
-														</div>
-													</div>
-													<!-- <div class="col-sm-12">
-														<div class="form-group form-group-default">
-															<label>淨利</label>
-															<input id="addNetProfit" name='note-body' type="text" class="form-control" placeholder="淨利">
-														</div>
-													</div> -->
-													<div class="col-sm-12">
-														<div class="form-group form-group-default">
-															<!-- <label>套用卡組</label>
-															<input id="addROI" name='note-body' type="text" class="form-control" placeholder="選擇卡組"> -->
-			              <!-- <input type="text" class="form-control" aria-label="Text input with dropdown button"> -->
-											<div class="input-group-append">
-												<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">套用卡組</button>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">三線趨勢交易法</a>
-													<a class="dropdown-item" href="#">高拋低吸交易法</a>
-													<a class="dropdown-item" href="#">新手穩健交易法</a>
-													<!-- <div role="separator" class="dropdown-divider"></div> -->
-													<a class="dropdown-item" href="#">我的第一個卡組</a>
-												</div>
-											</div>                              
-														</div>
-													</div>
-													<!-- <div class="col-md-6">
-														<div class="form-group form-group-default">
-															<label>Office</label>
-															<input id="addOffice" type="text" class="form-control" placeholder="fill office">
-														</div>
-													</div> -->
-												</div>
-                        <button type="submit" id="addSeriesButton" class="btn btn-primary">新增序列</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
-											</form>
-										</div>
-										<div class="modal-footer no-bd">
-										</div>
-									</div>
-								</div>
-							</div>
-
 							<div class="table-responsive">
 								<table id="multi-filter-select" class="display table table-striped table-hover" >
 									<thead>
-										<tr>
-											<th>交易序列名稱</th>
-											<th>股票名稱</th>
-											<th>模擬日期</th>
-											<th>投入資金</th>
-											<th>淨利</th>
-											<th>報酬率</th>
-										</tr>
-									</thead>
-									<!-- <tfoot>
 										<tr>
 											<th>Name</th>
 											<th>Position</th>
@@ -506,15 +401,25 @@ li.highcharts-active {
 											<th>Start date</th>
 											<th>Salary</th>
 										</tr>
-									</tfoot> -->
+									</thead>
+									<tfoot>
+										<tr>
+											<th>Name</th>
+											<th>Position</th>
+											<th>Office</th>
+											<th>Age</th>
+											<th>Start date</th>
+											<th>Salary</th>
+										</tr>
+									</tfoot>
 									<tbody>
 										<tr>
-											<td>緯創 新手穩健流</td>
-											<td>3231 緯創</td>
-											<td>2020/12/21</td>
-											<td>$10,000</td>
-											<td>$0</td>
-											<td>0%</td>
+											<td>Tiger Nixon</td>
+											<td>System Architect</td>
+											<td>Edinburgh</td>
+											<td>61</td>
+											<td>2011/04/25</td>
+											<td>$320,800</td>
 										</tr>
 									</tbody>
 								</table>
@@ -526,288 +431,15 @@ li.highcharts-active {
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">3231 Winstron Corporation</h4>
+							<h4 class="card-title">筆記圖表</h4>
 							
 						</div>
 						<div class="card-body">
 
+                <div id="chartContainer" style="height: 300px; width: 100%;">
+                </div>
+                <!-- container -->
 
-							<div class="table-responsive">
-							
-								    <link rel="stylesheet" type="text/css" href="https://code.highcharts.com/css/annotations/popup.css">
-
-
-<script src="https://code.highcharts.com/stock/highstock.js"></script>
-<script src="https://code.highcharts.com/stock/modules/data.js"></script>
-
-<script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
-
-<script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
-<script src="https://code.highcharts.com/stock/indicators/bollinger-bands.js"></script>
-<script src="https://code.highcharts.com/stock/indicators/ema.js"></script>
-
-<script src="https://code.highcharts.com/stock/modules/annotations-advanced.js"></script>
-
-<script src="https://code.highcharts.com/stock/modules/full-screen.js"></script>
-<script src="https://code.highcharts.com/stock/modules/price-indicator.js"></script>
-<script src="https://code.highcharts.com/stock/modules/stock-tools.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-<div class="chart-wrapper">
-  <div class="highcharts-popup highcharts-popup-indicators">
-    <span class="highcharts-close-popup">&times;</span>
-    <div class="highcharts-popup-wrapper">
-      <label for="indicator-list">Indicator</label>
-      <select name="indicator-list">
-        <option value="sma">SMA</option>
-        <option value="ema">EMA</option>
-        <option value="bb">Bollinger bands</option>
-      </select>
-      <label for="stroke">Period</label>
-      <input type="text" name="period" value="14"/>
-    </div>
-    <button>Add</button>
-  </div>
-  <div class="highcharts-popup highcharts-popup-annotations">
-    <span class="highcharts-close-popup">&times;</span>
-    <div class="highcharts-popup-wrapper">
-      <label for="stroke">Color</label>
-      <input type="text" name="stroke"/>
-      <label for="stroke-width">Width</label>
-      <input type="text" name="stroke-width"/>
-    </div>
-    <button>Save</button>
-  </div>
-  <div class="highcharts-stocktools-wrapper highcharts-bindings-container highcharts-bindings-wrapper">
-    <div class="highcharts-menu-wrapper">
-      <ul class="highcharts-stocktools-toolbar stocktools-toolbar">
-        <!-- <li class="highcharts-indicators" title="Indicators">
-        	<span class="highcharts-menu-item-btn"></span>
-          <span class="highcharts-menu-item-title">Indicators</span>
-        </li>
-        <li class="highcharts-label-annotation" title="Simple shapes">
-        	<span class="highcharts-menu-item-btn"></span>
-          <span class="highcharts-menu-item-title">Shapes</span>
-        	<span class="highcharts-submenu-item-arrow highcharts-arrow-right"></span>
-          <ul class="highcharts-submenu-wrapper">
-            <li class="highcharts-label-annotation" title="Label">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Label</span>
-            </li>
-            <li class="highcharts-circle-annotation" title="Circle">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Circle</span>
-            </li>
-            <li class="highcharts-rectangle-annotation " title="Rectangle">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Rectangle</span>
-            </li>
-            <li class="highcharts-ellipse-annotation" title="Ellipse">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Ellipse</span>
-            </li>
-          </ul>
-        </li>
-        <li class="highcharts-segment" title="Lines">
-        	<span class="highcharts-menu-item-btn"></span>
-          <span class="highcharts-menu-item-title">Lines</span>
-        	<span class="highcharts-submenu-item-arrow highcharts-arrow-right"></span>
-          <ul class="highcharts-submenu-wrapper">
-            <li class="highcharts-segment" title="Segment">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Segment</span>
-            </li>
-            <li class="highcharts-arrow-segment" title="Arrow segment">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Arrow segment</span>
-            </li>
-            <li class="highcharts-ray" title="Ray">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Ray</span>
-            </li>
-            <li class="highcharts-arrow-ray" title="Arrow ray">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Arrow ray</span>
-            </li>
-            <li class="highcharts-infinity-line" title="Line">
-            	<span class="highcharts-menu-item-btn" ></span>
-              <span class="highcharts-menu-item-title">Line</span>
-            </li>
-            <li class="highcharts-arrow-infinity-line" title="Arrow line">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Arrow</span>
-            </li>
-            <li class="highcharts-horizontal-line" title="Horizontal line">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Horizontal</span>
-            </li>
-            <li class="highcharts-vertical-line" title="Vertical line">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Vertical</span>
-            </li>
-          </ul>
-        </li>
-        <li class="highcharts-elliott3" title="Crooked lines">
-        	<span class="highcharts-menu-item-btn"></span>
-          <span class="highcharts-menu-item-title">Crooked lines</span>
-        	<span class="highcharts-submenu-item-arrow highcharts-arrow-right"></span>
-          <ul class="highcharts-submenu-wrapper">
-            <li class="highcharts-elliott3" title="Elliott 3 line">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Elliot 3</span>
-            </li>
-            <li class="highcharts-elliott5" title="Elliott 5 line">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Elliot 5</span>
-            </li>
-            <li class="highcharts-crooked3" title="Crooked 3 line">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Crooked 3</span>
-            </li>
-            <li class="highcharts-crooked5" title="Crooked 5 line">
-            	<span class="highcharts-menu-item-btn" ></span>
-              <span class="highcharts-menu-item-title">Crooked 5</span>
-            </li>
-          </ul>
-        </li> 
-         <li class="highcharts-measure-xy" title="Measure">
-        	<span class="highcharts-menu-item-btn"></span>
-          <span class="highcharts-menu-item-title">Measure</span>
-        	<span class="highcharts-submenu-item-arrow highcharts-arrow-right"></span>
-          <ul class="highcharts-submenu-wrapper">
-            <li class="highcharts-measure-xy" title="Measure XY">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Measure XY</span>
-            </li>
-            <li class="highcharts-measure-x" title="Measure X">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Measure X</span>
-            </li>
-            <li class="highcharts-measure-y" title="Measure Y">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Measure Y</span>
-            </li>
-          </ul>
-        </li>
-        <li class="highcharts-fibonacci" title="Advanced">
-        	<span class="highcharts-menu-item-btn"></span>
-          <span class="highcharts-menu-item-title">Advanced</span> 
-        	<span class="highcharts-submenu-item-arrow highcharts-arrow-right"></span> 
-          <ul class="highcharts-submenu-wrapper">
-            <li class="highcharts-fibonacci" title="Fibonacci">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Fibonacci</span>
-            </li>
-            <li class="highcharts-pitchfork" title="Pitchfork">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Pitchfork</span>
-            </li>
-            <li class="highcharts-parallel-channel" title="Parallel channel">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Parallel channel</span>
-            </li>
-          </ul> 
-         <li class="highcharts-vertical-counter" title="Vertical labels">
-        	<span class="highcharts-menu-item-btn"></span>
-          <span class="highcharts-menu-item-title">Counters</span>
-        	<span class="highcharts-submenu-item-arrow highcharts-arrow-right"></span>
-          <ul class="highcharts-submenu-wrapper">
-            <li class="highcharts-vertical-counter" title="Vertical counter">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Counter</span>
-            </li>
-            <li class="highcharts-vertical-label" title="Vertical label">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Label</span>
-            </li>
-            <li class="highcharts-vertical-arrow" title="Vertical arrow">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Arrow</span>
-            </li>
-          </ul>
-        </li> -->
-        
-        <li class="highcharts-flag-circlepin" title="Flags">
-          <span class="highcharts-menu-item-btn"></span>
-          <span class="highcharts-menu-item-title">Flags</span>
-          <span class="highcharts-submenu-item-arrow highcharts-arrow-right"></span>
-          <ul class="highcharts-submenu-wrapper">
-            <!-- <li class="highcharts-flag-circlepin" title="Flag circle">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Circle</span>
-            </li>
-            <li class="highcharts-flag-diamondpin" title="Flag diamond">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Diamond</span>
-            </li>
-            <li class="highcharts-flag-squarepin" title="Flag square">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Square</span>
-            </li> -->
-            <li class="highcharts-flag-simplepin" title="Flag simple">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Simple</span>
-            </li>
-          </ul>
-        </li>
-        <li class="highcharts-series-type-candlestick" title="Type change">
-          <span class="highcharts-menu-item-btn"></span>
-          <span class="highcharts-menu-item-title">Series type</span>
-          <span class="highcharts-submenu-item-arrow highcharts-arrow-right"></span>
-          <ul class="highcharts-submenu-wrapper">
-            <!-- <li class="highcharts-series-type-ohlc" title="OHLC">
-              <span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">OHLC</span>
-            </li> -->
-            <li class="highcharts-series-type-candlestick" title="Candlestick">
-              <span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Candlestick</span>
-            </li>
-            <li class="highcharts-series-type-line" title="Line">
-              <span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Line</span>
-            </li>
-          </ul>
-        </li>
-        <li class="highcharts-save-chart right" title="Save chart">
-          <span class="highcharts-menu-item-btn"></span>
-        </li>
-
-		<!-- dialog html -->
-		<li class="highcharts-full-screen right" title="Fullscreen">
-          <span class="highcharts-menu-item-btn"></span>
-        </li>
-        <!-- <li class="highcharts-zoom-x right" title="Zoom change">
-        	<span class="highcharts-menu-item-btn"></span>
-        	<span class="highcharts-submenu-item-arrow highcharts-arrow-right"></span>
-          <ul class="highcharts-submenu-wrapper">
-            <li class="highcharts-zoom-x" title="Zoom X">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Zoom X</span>
-            </li>
-            <li class="highcharts-zoom-y" title="Zoom Y">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Zoom Y</span>
-            </li>
-            <li class="highcharts-zoom-xy" title="Zooom XY">
-            	<span class="highcharts-menu-item-btn"></span>
-              <span class="highcharts-menu-item-title">Zoom XY</span>
-            </li>
-          </ul>
-        </li> -->
-        <!-- <li class="highcharts-current-price-indicator right" title="Current Price Indicators">
-          <span class="highcharts-menu-item-btn"></span>
-        </li>
-        <li class="highcharts-toggle-annotations right" title="Toggle annotations">
-          <span class="highcharts-menu-item-btn"></span>
-        </li> -->
-      </ul>
-    </div>
-  </div>
-  <div id="container" class="chart"></div>
-</div>
-
-							</div>
 						</div>
 					</div>
 				</div>
@@ -828,7 +460,6 @@ li.highcharts-active {
 								</button>
 							</div>
 						</div>
-
 						<div class="card-body">
 							<!-- Modal -->
 							<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -849,37 +480,36 @@ li.highcharts-active {
 										<div class="modal-body">
 											<p class="small">Create a new row using this form, make sure you fill them all</p>
 											<form>
-											<!-- <form action='/paper-trading-manual-back.html'> -->
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
-															<label>筆記內容</label>
-															<input id="addName" name='note-body' type="text" class="form-control" placeholder="筆記內容">
+															<label>Name</label>
+															<input id="addName" type="text" class="form-control" placeholder="fill name">
 														</div>
 													</div>
 													<div class="col-md-6 pr-0">
 														<div class="form-group form-group-default">
-															<label>標註時間</label>
-															<input id="addPosition" name='note-time' type="datetime-local" class="form-control" style='color:white'>
+															<label>Position</label>
+															<input id="addPosition" type="text" class="form-control" placeholder="fill position">
 														</div>
 													</div>
-													<!-- <div class="col-md-6">
+													<div class="col-md-6">
 														<div class="form-group form-group-default">
 															<label>Office</label>
 															<input id="addOffice" type="text" class="form-control" placeholder="fill office">
 														</div>
-													</div> -->
+													</div>
 												</div>
-                        <button type="submit" id="addRowButton" class="btn btn-primary">新增</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 											</form>
 										</div>
 										<div class="modal-footer no-bd">
+											<button type="button" id="addRowButton" class="btn btn-primary">Add</button>
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 										</div>
 									</div>
 								</div>
 							</div>
-	
+
 
 							<div class="table-responsive">
 								<table id="add-row" class="display table table-striped table-hover" >
@@ -892,7 +522,15 @@ li.highcharts-active {
 										</tr>
 									</thead>
 									<tbody>
-
+                                        <!-- {% for note in notes %} -->
+                                        
+                                        <tr>
+                                            <td>標題</td>
+                                            <td>內容</td>
+                                            <td>標註位置(日期)</td>
+                                        </tr>
+                                    
+                                        <!-- {% endfor %} -->
 									</tbody>
 								</table>
 							</div>
@@ -970,27 +608,6 @@ li.highcharts-active {
 					]);
 				$('#addRowModal').modal('hide');
 
-			});
-      
-      // add sereis
-			$('#add-series').DataTable({
-				"pageLength": 5,
-			});
-      
-			var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-			$('#addSeriesButton').click(function() {
-				$('#add-row').dataTable().fnAddData([
-        $("#addSeriesName").val(),
-					$("#addStock").val(),
-					$("#addDate").val(),
-					$("#addCapital").val(),
-					$("#addNetProfit").val(),
-					$("#addROI").val(),
-					action
-        ]);
-				$('#addSeriesModal').modal('hide');
-        
 			});
 		});
 
@@ -1282,7 +899,7 @@ Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', func
 				noteButton.setAttribute("data-target", "#addRowModal")
 				console.log(noteButton)
 				paths[i].appendChild(noteButton)
-        
+
         // paths[i].setAttribute("id", `popover-${i}`)
         // paths[i].setAttribute("popover", "")
 
@@ -1303,4 +920,47 @@ Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', func
 		}, "2000");
 	
 	</script>
+    <script type="text/javascript">
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      title:{
+        text: "Default Tool Tip"
+      },
+      data: [
+      {            
+        type: "column",        
+        dataPoints: [
+        { x: 10, y: 71, label: "alpha"},
+        { x: 20, y: 55, label: "bravo"},
+        { x: 30, y: 50, label: "charlie"},
+        { x: 40, y: 65, label: "delta"},
+        { x: 50, y: 95, label: "echo"},
+        { x: 60, y: 68, label: "fox"},
+        { x: 70, y: 28, label: "golf"},
+        { x: 80, y: 34, label: "hotel"},
+        { x: 90, y: 14, label: "india"}
+        ]
+      },
+        {            
+        type: "column",        
+        dataPoints: [
+        { x: 10, y: 41, label: "alpha"},
+        { x: 20, y: 35, label: "bravo"},
+        { x: 30, y: 26, label: "charlie"},
+        { x: 40, y: 45, label: "delta"},
+        { x: 50, y: 97, label: "echo"},
+        { x: 60, y: 61, label: "fox"},
+        { x: 70, y: 36, label: "golf"},
+        { x: 80, y: 31, label: "hotel"},
+        { x: 90, y: 7, label: "note"}
+        ]
+      }
+      ]
+    });
+
+    chart.render();
+  }
+  </script>
+  <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 {% endblock javascripts %}

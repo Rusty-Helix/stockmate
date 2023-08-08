@@ -1,0 +1,247 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<div class="content">
+		<div class="page-inner">
+			<div class="page-header" style='display: flex'>
+				<h4 class="page-title">組建卡組</h4>
+				<ul class="breadcrumbs">
+					<li class="nav-item">
+						<a href="#">核心功能</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">策略圖鑑</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">組建卡組</a>
+					</li>
+				</ul>
+				{% if not is_building_deck.is_building_deck %}
+				<div style='float: right; margin-left: auto'>
+					<button class="btn btn-secondary" style='float: right; margin-left: auto' type='submit'>新增卡組</button>
+				</div>
+				{% endif %}
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6">
+					
+					
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">
+								{% if is_building_deck %}
+								<!-- <a class="btn btn-secondary" style='float: right; margin: auto' href='/strategy-gallery-decks.html'>我的卡組</a> -->
+								{% csrf_token %}
+								<form action='/strategy-gallery-newest.html'>
+								{% csrf_token %}
+									<input class="btn btn-secondary" style='float: right; margin-top: 8px; margin-right: 8px' type='submit' value='確認' />
+									{% endif %}
+									<div class="form-group form-inline">
+										<label for="inlineinput" class="col-md-3 col-form-label">卡組名稱: </label>
+										<div class="col-md-9 p-0">
+											<input type="text" class="form-control input-full" id="title" name='deck-title' placeholder="輸入卡組名稱">
+										</div>
+									</div>
+								</form>
+								<!-- (當前組件卡組) -->
+								<code class="highlighter-rouge">當前卡數: {{selected_count}}</code>
+							</div>
+						</div>
+						<div class="card-body">
+							<!-- <div class="card-sub">
+								當前組建卡組 <code class="highlighter-rouge">(朱家泓策略實踐)</code>
+							</div> -->
+
+							<table class="table table-bordered table-hover table-head-bg-primary table-bordered-bd-info mt-4">
+								<!-- <table class="table table-head-bg-primary mt-4"></table> -->
+								<thead>
+									<tr>
+										<th scope="col">編號</th>
+										<th scope="col">名稱</th>
+										<th scope="col">類型</th>
+										<th scope="col">進出場</th>
+										<!-- <th scope="col">進出訊號</th> -->
+									</tr>
+								</thead>
+								<tbody>
+								{% for selected_strategy in selected_strategies %}
+								<!-- for end for -->
+									<tr>
+										<td>{{selected_strategy.id}}</td>
+										<td>{{selected_strategy.title}}</td>
+
+										{% if selected_strategy.strategyType == 'candlestick pattern' %}
+										<td>K線型態</td>
+										{% elif selected_strategy.strategyType == 'index value' %}
+										<td>指標數值</td>
+										{% elif selected_strategy.strategyType == 'index trend' %}
+										<td>指標趨勢</td>
+										{% elif selected_strategy.strategyType == 'strategic stop' %}
+										<td>停損停利</td>
+										{% endif %}
+
+
+										{% if selected_strategy.signalType == 'buy' %}
+										<td style='color: #eebbaa;'>買進</td>
+										{% elif selected_strategy.signalType == 'sell' %}
+										<td style='color: lightgreen;'>賣出</td>
+										{% endif %}
+										<!-- <td>@mdo</td> -->			
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-md-6">
+						
+						
+						<!-- {% csrf_token %} -->
+						<!-- <form method='post' class="card" action='/strategy-gallery-build.html'> -->
+						{% csrf_token %}
+						<div class="card-header">
+								<div class="card-title">
+									
+									<!-- <code class="highlighter-rouge"></code> -->
+									<!-- <button class="btn btn-primary" style='float: right' type='submit'>添加至當前卡組</button> -->
+
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<!-- <label class="form-label">Image Check</label> -->
+									<div class='row' style='height: 600px'>
+										{% for strategy in strategies %}
+										
+										<div class="col-lg-4">
+											<div class="card card-profile">
+												<div class="card-header" style="background-image: url('/static/assets/img/question-mark.jpg')">
+													<label class="imagecheck" style="height: 100%; width:100%">
+														<input name="imagecheck" type="checkbox" value={{strategy.id}} class="imagecheck-input" {% if strategy.selected %} checked {% endif %}>
+														<figure class="imagecheck-figure" style="width:100%; height: 100%">
+															{% if strategy.cover != '' %}
+															<img src={{strategy.cover}} width="100%" height="100%" alt="...">
+															{% else %}
+															<!-- <img src='/static/assets/img/question-mark.jpg' width="100%" height="100%" alt="..."> -->
+															{% endif %}
+														</figure> 
+													</label>
+												</div>
+												<div class="card-body">
+													<div class="user-profile text-center">
+														<!-- <div class="name">{{strategy.title}}</div> -->
+														<!-- <div class="job">Frontend Developer</div>
+														<div class="desc">A man who hates loneliness</div> -->
+														<!-- <div class="social-media">
+															<a class="btn btn-info btn-twitter btn-sm btn-link" href="#"> 
+																<span class="btn-label just-icon"><i class="flaticon-twitter"></i> </span>
+															</a>
+															<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
+																<span class="btn-label just-icon"><i class="flaticon-google-plus"></i> </span> 
+															</a>
+															<a class="btn btn-primary btn-sm btn-link" rel="publisher" href="#"> 
+																<span class="btn-label just-icon"><i class="flaticon-facebook"></i> </span> 
+															</a>
+															<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
+																<span class="btn-label just-icon"><i class="flaticon-dribbble"></i> </span> 
+															</a>
+														</div> -->
+													<div class="view-profile">
+														<!-- <button popovertarget="{{strategy.id}}">{{strategy.title}}</button> -->
+														<button class="btn btn-dark btn-block"  popovertarget="{{strategy.id}}">{{strategy.title}}</button>
+													</div>
+														
+													</div>
+												</div>
+												<div class="card-footer">
+													<div class="row user-stats text-center">
+														<div class="col">
+															<!-- <div class="number">125</div> -->
+															{% if strategy.strategyType == 'candlestick pattern' %}
+															<div class="title">K線</div>
+															{% elif strategy.strategyType == 'index value' %}
+															<div class="title">數值</div>
+															{% elif strategy.strategyType == 'index trend' %}
+															<div class="title">趨勢</div>
+															{% elif strategy.strategyType == 'strategic stop' %}
+															<div class="title">停損</div>
+															{% else %}
+															<div class="title">未分類</div>
+															{% endif %}
+														</div>
+														<div class="col">
+															<!-- <div class="number">25K</div> -->
+															{% if strategy.signalType == 'buy' %}
+															<div class="title">買進</div>
+															{% elif strategy.signalType == 'sell' %}
+															<div class="title">賣出</div>
+															{% elif strategy.signalType == 'non' %}
+															<div class="title">等待</div>
+															{% endif %}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="/static/assets/js/setting-demo2.js"></script>
+	<script>
+		$('#displayNotif').on('click', function(){
+			var placementFrom = $('#notify_placement_from option:selected').val();
+			var placementAlign = $('#notify_placement_align option:selected').val();
+			var state = $('#notify_state option:selected').val();
+			var style = $('#notify_style option:selected').val();
+			var content = {};
+
+			content.message = 'Turning standard Bootstrap alerts into "notify" like notifications';
+			content.title = 'Bootstrap notify';
+			if (style == "withicon") {
+				content.icon = 'fa fa-bell';
+			} else {
+				content.icon = 'none';
+			}
+			content.url = 'index.html';
+			content.target = '_blank';
+
+			$.notify(content,{
+				type: state,
+				placement: {
+					from: placementFrom,
+					align: placementAlign
+				},
+				time: 1000,
+			});
+		});
+	</script>
+	
+{% endblock javascripts %}

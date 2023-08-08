@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 
 # class User(AbstractUser):
@@ -24,21 +25,16 @@ from django.contrib.auth.models import AbstractUser
 
 #     USERNAME_FIELD = 'email'
 #     REQUIRED_FIELDS = ['username']
-class Filter(models.Model):
+class IsBuildingDeck(models.Model):
     id = models.AutoField(primary_key=True)
-    filterStrategicStop = models.BooleanField(default=True)
-    filterCandlestickPattern = models.BooleanField(default=True)
-    filterIndexValue = models.BooleanField(default=True)
-    filterIndexTrend = models.BooleanField(default=True)
-    filterBuy = models.BooleanField(default=True)
-    filterSell = models.BooleanField(default=True)
-    filterWait = models.BooleanField(default=True)
+    is_building_deck = models.BooleanField(default=False)
     def __str__(self):
-        return 'singleton filter'
+        return 'singleton boolean'
     
 class StrategyCard(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200, default='empty title')
+    selected = models.BooleanField(default=False)
 
     STRATEGY_TYPE_CHOICES = (
         ('candlestick pattern', 'candlestick pattern'),
@@ -65,7 +61,23 @@ class StrategyCard(models.Model):
 class StrategyDeck(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
-    strategies = models.ManyToManyField(StrategyCard, related_name='deck_strategies', blank=True)
+    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.PROTECT)
+    # strategies = models.ManyToManyField(StrategyCard)
+    strategies = models.CharField(max_length=2000, default='', null=True, blank=True)
+    # is_current = models.BooleanField(default=False)
+    def __str__(self):
+        return self.title
+    
+class CurrentDeck(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=200)
+    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.PROTECT)
+    counter = models.BigIntegerField(default=1)
+    strategies = models.CharField(max_length=2000, default='', null=True, blank=True)
+    # strategies = models.ManyToManyField(StrategyCard, related_name='deck_strategies', blank=True)
+    # strategies = models.ForeignKey(StrategyCard, on_delete=models.SET_NULL, null=True, blank=True)
+
+    is_current = models.BooleanField(default=True)
     def __str__(self):
         return self.title
 

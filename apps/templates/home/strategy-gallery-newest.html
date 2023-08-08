@@ -1,0 +1,150 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<div class="content">
+		<div class="page-inner">
+			<div class="page-header" style='display: flex'>
+				<h4 class="page-title">建立完成</h4>
+				<ul class="breadcrumbs">
+					<li class="nav-item">
+						<a href="#">核心功能</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">策略圖鑑</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">新卡組建立完成</a>
+					</li>
+				</ul>
+				{% if not is_building_deck.is_building_deck %}
+				<div style='float: right; margin-left: auto'>
+					<button class="btn btn-secondary" style='float: right; margin-left: auto' type='submit'>新增卡組</button>
+				</div>
+				{% endif %}
+			</div>
+			
+			<form class="row">
+				<div class="col-md-6">
+					
+					
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">
+								{% if is_building_deck %}
+								<a class="btn btn-secondary" style='float: right; margin: auto' href='/strategy-gallery-decks.html'>我的卡組</a>
+								<button class="btn btn-primary" style='float: right' type='submit'>清空</button>
+								<!-- <a class="btn btn-default" style='float: right; margin: auto' type='button' href='/strategy-gallery-clear-deck.html'>清空卡片</a> -->
+								{% endif %}
+								{{current_deck.title}}<br>
+								<!-- <br> -->
+								<!-- (當前組件卡組) -->
+								<code class="highlighter-rouge">卡數: {{selected_count}}</code>
+							</div>
+						</div>
+						<div class="card-body">
+							<!-- <div class="card-sub">
+								當前組建卡組 <code class="highlighter-rouge">(朱家泓策略實踐)</code>
+							</div> -->
+
+							<table class="table table-bordered table-hover table-head-bg-primary table-bordered-bd-info mt-4">
+								<!-- <table class="table table-head-bg-primary mt-4"></table> -->
+								<thead>
+									<tr>
+										<th scope="col">編號</th>
+										<th scope="col">名稱</th>
+										<th scope="col">類型</th>
+										<th scope="col">進出場</th>
+										<!-- <th scope="col">進出訊號</th> -->
+									</tr>
+								</thead>
+								<tbody>
+								{% for selected_strategy in selected_strategies %}
+								<!-- for end for -->
+									<tr>
+										<!-- <td style='margin: 0; max-width: 15px'><input type='submit' class="btn btn-danger" id='{{selected_strategy.id}}' name='{{selected_strategy.id}}' value='X' style='max-width: 100%; max-height: 100%;margin:0; color: black' /></td> -->
+										<td>{{selected_strategy.id}}</td>
+										<td>{{selected_strategy.title}}</td>
+
+										{% if selected_strategy.strategyType == 'candlestick pattern' %}
+										<td>K線型態</td>
+										{% elif selected_strategy.strategyType == 'index value' %}
+										<td>指標數值</td>
+										{% elif selected_strategy.strategyType == 'index trend' %}
+										<td>指標趨勢</td>
+										{% elif selected_strategy.strategyType == 'strategic stop' %}
+										<td>停損停利</td>
+										{% endif %}
+
+
+										{% if selected_strategy.signalType == 'buy' %}
+										<td style='color: #eebbaa;'>買進</td>
+										{% elif selected_strategy.signalType == 'sell' %}
+										<td style='color: lightgreen;'>賣出</td>
+										{% endif %}
+										<!-- <td>@mdo</td> -->			
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-md-6">
+						
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="/static/assets/js/setting-demo2.js"></script>
+	<script>
+		$('#displayNotif').on('click', function(){
+			var placementFrom = $('#notify_placement_from option:selected').val();
+			var placementAlign = $('#notify_placement_align option:selected').val();
+			var state = $('#notify_state option:selected').val();
+			var style = $('#notify_style option:selected').val();
+			var content = {};
+
+			content.message = 'Turning standard Bootstrap alerts into "notify" like notifications';
+			content.title = 'Bootstrap notify';
+			if (style == "withicon") {
+				content.icon = 'fa fa-bell';
+			} else {
+				content.icon = 'none';
+			}
+			content.url = 'index.html';
+			content.target = '_blank';
+
+			$.notify(content,{
+				type: state,
+				placement: {
+					from: placementFrom,
+					align: placementAlign
+				},
+				time: 1000,
+			});
+		});
+	</script>
+	
+{% endblock javascripts %}
